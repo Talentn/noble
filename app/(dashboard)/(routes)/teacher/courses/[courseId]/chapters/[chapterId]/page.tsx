@@ -6,13 +6,8 @@ import { ArrowLeft, Eye, LayoutDashboard, Video } from "lucide-react";
 import { db } from "@/lib/db";
 import { IconBadge } from "@/components/icon-badge";
 import { ChapterTitleForm } from "./_components/chapter-title-form";
-{/*import { Banner } from "@/components/banner";
+import { ChapterDescriptionForm } from "./_components/chapter-description-form";
 
-
-import { ChapterAccessForm } from "./_components/chapter-access-form";
-import { ChapterVideoForm } from "./_components/chapter-video-form";
-import { ChapterActions } from "./_components/chapter-actions";
-*/}
 const ChapterIdPage = async ({
   params
 }: {
@@ -53,12 +48,7 @@ const ChapterIdPage = async ({
 
   return (
     <>
-      {/*{!chapter.isPublished && (
-        <Banner
-          variant="warning"
-          label="This chapter is unpublished. It will not be visible in the course"
-        />
-      )}*/}
+    
       <div className="p-6">
         <div className="flex items-center justify-between">
           <div className="w-full">
@@ -67,23 +57,17 @@ const ChapterIdPage = async ({
               className="flex items-center text-sm hover:opacity-75 transition mb-6"
             >
               <ArrowLeft className="h-4 w-4 mr-2" />
-              Back to course setup
+              Retour à la configuration du cours
             </Link>
             <div className="flex items-center justify-between w-full">
               <div className="flex flex-col gap-y-2">
                 <h1 className="text-2xl font-medium">
-                  Chapter Creation
+                Création de chapitre
                 </h1>
                 <span className="text-sm text-slate-700">
-                  Complete all fields {completionText}
+                  Remplissez tous les champs {completionText}
                 </span>
               </div>
-              {/*<ChapterActions
-                disabled={!isComplete}
-                courseId={params.courseId}
-                chapterId={params.chapterId}
-                isPublished={chapter.isPublished}
-              />*/}
             </div>
           </div>
         </div>
@@ -93,7 +77,7 @@ const ChapterIdPage = async ({
               <div className="flex items-center gap-x-2">
                 <IconBadge icon={LayoutDashboard} />
                 <h2 className="text-xl">
-                  Customize your chapter
+                  Personnalisez votre chapitre
                 </h2>
               </div>
               <ChapterTitleForm
@@ -101,38 +85,12 @@ const ChapterIdPage = async ({
                 courseId={params.courseId}
                 chapterId={params.chapterId}
               />
-              {/*<ChapterDescriptionForm
+              <ChapterDescriptionForm
                 initialData={chapter}
                 courseId={params.courseId}
                 chapterId={params.chapterId}
-              />*/}
+              />
             </div>
-            <div>
-              <div className="flex items-center gap-x-2">
-                <IconBadge icon={Eye} />
-                <h2 className="text-xl">
-                  Access Settings
-                </h2>
-              </div>
-              {/*<ChapterAccessForm
-                initialData={chapter}
-                courseId={params.courseId}
-                chapterId={params.chapterId}
-              />*/}
-            </div>
-          </div>
-          <div>
-            <div className="flex items-center gap-x-2">
-              <IconBadge icon={Video} />
-              <h2 className="text-xl">
-                Add a video
-              </h2>
-            </div>
-            {/*<ChapterVideoForm
-              initialData={chapter}
-              chapterId={params.chapterId}
-              courseId={params.courseId}
-            />*/}
           </div>
         </div>
       </div>
