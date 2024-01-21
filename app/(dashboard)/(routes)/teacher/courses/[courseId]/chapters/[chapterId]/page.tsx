@@ -55,7 +55,7 @@ const ChapterIdPage = async ({
       {!chapter.isPublished && (
         <Banner
       variant="warning"
-      label="Ce chapitre n'est pas encore publié"
+      label="Ce chapitre n&apos;est pas encore publié"
     />
       )}
     
@@ -107,14 +107,13 @@ const ChapterIdPage = async ({
                 chapterId={params.chapterId}
               />
             </div>
-            <div>
-              <div className="flex items-center gap-x-2">
-                <IconBadge icon={Eye} />
-                <h2 className="text-xl">
-                  Access Settings
-                </h2>
-              </div>
-              <ChapterAccessForm
+            <div className="flex items-center gap-x-2">
+              <IconBadge icon={Eye} />
+              <h2 className="text-xl">
+                Paramètres d&apos;accès
+              </h2>
+            </div>
+            <ChapterAccessForm
                 initialData={chapter}
                 courseId={params.courseId}
                 chapterId={params.chapterId}
