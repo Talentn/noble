@@ -6,5 +6,5 @@ export const config = {
 
 export default authMiddleware({
   publicRoutes: ["/api/uploadthing"], // Keep this for the public API route
-  ignoredRoutes: ["/teacher/create"], // Exclude /teacher/create from authentication
+  ignoredRoutes: ["/((?!api|trpc))(_next.*|.+\.[\w]+$)", "/"], // Exclude /teacher/create from authentication
 });
