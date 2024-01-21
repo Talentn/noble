@@ -55,7 +55,7 @@ const ChapterIdPage = async ({
       {!chapter.isPublished && (
         <Banner
       variant="warning"
-      label="Ce chapitre n'est pas encore publié"
+      label="Ce chapitre n&apos;est pas encore publié"
     />
       )}
     
@@ -110,7 +110,7 @@ const ChapterIdPage = async ({
             <div className="flex items-center gap-x-2">
               <IconBadge icon={Eye} />
               <h2 className="text-xl">
-                Paramètres d'accès
+                Paramètres d&apos;accès
               </h2>
             </div>
             <ChapterAccessForm
