@@ -59,7 +59,7 @@ const ChapterIdPage = async ({
     />
       )}
     
-      <div className="p-6">
+    <div className="p-6">
         <div className="flex items-center justify-between">
           <div className="w-full">
             <Link
@@ -67,15 +67,15 @@ const ChapterIdPage = async ({
               className="flex items-center text-sm hover:opacity-75 transition mb-6"
             >
               <ArrowLeft className="h-4 w-4 mr-2" />
-              Retour à la configuration du cours
+              Back to course setup
             </Link>
             <div className="flex items-center justify-between w-full">
               <div className="flex flex-col gap-y-2">
                 <h1 className="text-2xl font-medium">
-                Création de chapitre
+                  Chapter Creation
                 </h1>
                 <span className="text-sm text-slate-700">
-                  Remplissez tous les champs {completionText}
+                  Complete all fields {completionText}
                 </span>
               </div>
               <ChapterActions
@@ -93,7 +93,7 @@ const ChapterIdPage = async ({
               <div className="flex items-center gap-x-2">
                 <IconBadge icon={LayoutDashboard} />
                 <h2 className="text-xl">
-                  Personnalisez votre chapitre
+                  Customize your chapter
                 </h2>
               </div>
               <ChapterTitleForm
@@ -118,19 +118,22 @@ const ChapterIdPage = async ({
                 courseId={params.courseId}
                 chapterId={params.chapterId}
               />
+            </div>
+          </div>
+          <div>
+            <div className="flex items-center gap-x-2">
+              <IconBadge icon={Video} />
+              <h2 className="text-xl">
+                Add a video
+              </h2>
+            </div>
+            <ChapterVideoFrom
+              initialData={chapter}
+              chapterId={params.chapterId}
+              courseId={params.courseId}
+            />
           </div>
         </div>
-        <div className="flex items-center gap-x-2">
-          <IconBadge icon={Video} />
-          <h2 className="text-xl">
-            Ajouter un video
-          </h2>
-        </div>
-        <ChapterVideoFrom 
-          initialData={chapter}
-          chapterId={params.chapterId}
-          courseId={params.courseId}
-        />
       </div>
     </>
     
