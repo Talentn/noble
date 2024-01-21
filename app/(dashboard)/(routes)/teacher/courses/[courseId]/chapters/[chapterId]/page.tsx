@@ -8,6 +8,9 @@ import { IconBadge } from "@/components/icon-badge";
 import { ChapterTitleForm } from "./_components/chapter-title-form";
 import { ChapterDescriptionForm } from "./_components/chapter-description-form";
 import { ChapterAccessForm } from "./_components/chapter-access-form";
+import { ChapterVideoFrom } from "./_components/chapter-video-form";
+import { Banner } from "@/components/banner";
+import { ChapterActions } from "./_components/chapter-actions";
 
 const ChapterIdPage = async ({
   params
@@ -49,6 +52,12 @@ const ChapterIdPage = async ({
 
   return (
     <>
+      {!chapter.isPublished && (
+        <Banner
+      variant="warning"
+      label="Ce chapitre n'est pas encore publié"
+    />
+      )}
     
       <div className="p-6">
         <div className="flex items-center justify-between">
@@ -69,6 +78,12 @@ const ChapterIdPage = async ({
                   Remplissez tous les champs {completionText}
                 </span>
               </div>
+              <ChapterActions
+              disabled={!isComplete}
+              courseId={params.courseId}
+              chapterId={params.chapterId}
+              isPublished={chapter.isPublished}
+              />
             </div>
           </div>
         </div>
@@ -111,8 +126,14 @@ const ChapterIdPage = async ({
             Ajouter un video
           </h2>
         </div>
+        <ChapterVideoFrom 
+          initialData={chapter}
+          chapterId={params.chapterId}
+          courseId={params.courseId}
+        />
       </div>
     </>
+    
    );
 }
  
