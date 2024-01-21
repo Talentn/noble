@@ -2,6 +2,7 @@
 
 import * as z from "zod";
 import axios from "axios";
+import MuxPlayer from "@mux/mux-player-react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { Pencil, PlusCircle, Video } from "lucide-react";
@@ -84,7 +85,9 @@ export const ChapterVideoFrom = ({
                 </div>
         ) : (
             <div className="relative aspect-video mt-2">
-              vidéo uploaded
+              <MuxPlayer
+              playbackId={initialData?.muxData?.playbackId || ""}
+              />
             </div>
         )
       )}
