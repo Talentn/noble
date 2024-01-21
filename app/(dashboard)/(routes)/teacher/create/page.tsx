@@ -71,7 +71,7 @@ const onSubmit = async (values: z.infer<typeof formSchema>) => {
                                     <FormControl>
                                         <Input
                                             disabled={isSubmitting}
-                                            placeholder="e.g. 'RLC forcée'" {...field}
+                                            placeholder="e.g. &apos;RLC forcée&apos;" {...field}
                                         />
                                     </FormControl>
                                     <FormDescription>

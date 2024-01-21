@@ -105,7 +105,7 @@ export const PriceForm = ({
                     type="number"
                     step="0.01"
                       disabled={isSubmitting}
-                      placeholder="prix du cours'"
+                      placeholder="prix du cours"
                       {...field}
                     />
                   </FormControl>
