@@ -69,7 +69,7 @@ export const ChapterDescriptionForm = ({
         Description du chapitre
         <Button onClick={toggleEdit} variant="ghost">
           {isEditing ? (
-            <>Cancel</>
+            <>Annuler</>
           ) : (
             <>
               <Pencil className="h-4 w-4 mr-2" />
