@@ -94,7 +94,7 @@ export const TitleForm = ({
                   <FormControl>
                     <Input
                       disabled={isSubmitting}
-                      placeholder="e.g. 'RLC forcée'"
+                      placeholder="e.g. &apos;RLC forcée&apos;"
                       {...field}
                     />
                   </FormControl>
