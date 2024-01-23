@@ -57,6 +57,7 @@ const ChapterIdPage = async ({
       variant="warning"
       label="Ce chapitre n&apos;est pas encore publié"
     />
+      <></>
       )}
     
     <div className="p-6">
