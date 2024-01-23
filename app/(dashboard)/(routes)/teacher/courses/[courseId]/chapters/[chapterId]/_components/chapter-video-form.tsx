@@ -59,10 +59,10 @@ export const ChapterVideoFrom = ({
   return (
     <div className="mt-6 border bg-slate-100 rounded-md p-4">
       <div className="font-medium flex items-center justify-between">
-        Video de Chapitre
+        Video du chapitre
         <Button onClick={toggleEdit} variant="ghost">
           {isEditing && (
-            <>Cancel</>
+            <>Annuler</>
           )}
           {!isEditing && !initialData.videoUrl && (
             <>
