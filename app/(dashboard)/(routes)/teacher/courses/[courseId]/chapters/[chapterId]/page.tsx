@@ -107,7 +107,6 @@ const ChapterIdPage = async ({
                 chapterId={params.chapterId}
               />
             </div>
-<<<<<<< HEAD
             <div>
               <div className="flex items-center gap-x-2">
                 <IconBadge icon={Eye} />
@@ -116,15 +115,6 @@ const ChapterIdPage = async ({
                 </h2>
               </div>
               <ChapterAccessForm
-=======
-            <div className="flex items-center gap-x-2">
-              <IconBadge icon={Eye} />
-              <h2 className="text-xl">
-                Paramètres d&apos;accès
-              </h2>
-            </div>
-            <ChapterAccessForm
->>>>>>> 5ba795f7c59274a0d8c82e2da69db4a7e596b669
                 initialData={chapter}
                 courseId={params.courseId}
                 chapterId={params.chapterId}
@@ -145,8 +135,7 @@ const ChapterIdPage = async ({
             />
           </div>
         </div>
-      </div>
-    </>
+ </>
     
    );
 }
