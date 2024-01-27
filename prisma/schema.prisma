@@ -63,7 +63,7 @@ model Chapter {
   courseId String
   course Course @relation(fields: [courseId], references: [id], onDelete: Cascade)
 
-  useProgress UserProgress[]
+  userProgress UserProgress[]
 
   createdAt DateTime @default(now())
   updateAt DateTime @updatedAt
@@ -100,7 +100,7 @@ model UserProgress{
     course Course @relation(fields: [courseId], references: [id], onDelete: Cascade)
     createdAt DateTime @default(now())
     updateAt DateTime @updatedAt
-
+    @@unique([userId, courseId])
     @@index([courseId])
   }
 
