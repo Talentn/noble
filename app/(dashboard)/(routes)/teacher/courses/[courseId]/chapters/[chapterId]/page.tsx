@@ -134,7 +134,6 @@ const ChapterIdPage = async ({
             />
           </div>
         </div>
-      </div>
     </>
     
    );

@@ -1,12 +1,10 @@
 import { auth } from "@clerk/nextjs";
 import { redirect } from "next/navigation";
-
 import { db } from "@/lib/db";
-
 import { SearchInput } from "@/components/search-input";
-
 import { Categories } from "./_components/categories";
-
+import { getCourses } from "@/actions/get-courses";
+import { CoursesList } from "@/components/courses-list";
 interface SearchPageProps {
   searchParams: {
     title: string;
@@ -29,7 +27,10 @@ const SearchPage = async ({
     }
   });
 
- 
+ const courses = await getCourses ({
+    userId,
+    ...searchParams
+ })
 
   return (
     <>
@@ -40,6 +41,7 @@ const SearchPage = async ({
         <Categories
           items={categories}
         />
+        <CoursesList items={courses}/>
       </div>
     </>
    );
