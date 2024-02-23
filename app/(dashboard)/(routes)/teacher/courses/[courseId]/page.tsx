@@ -12,6 +12,7 @@ import { AttachmentForm } from "./_components/attachment-form";
 import { ChaptersForm } from "./_components/chapters-form";
 import { Banner } from "@/components/banner";
 import { Actions } from "./_components/actions";
+import Footer from "@/components/footer";
 
 const CourseIdPage = async ({
     params
@@ -161,12 +162,17 @@ const CourseIdPage = async ({
                         initialData={course}
                         courseId={course.id}
                     />
+
+                    
                     </div>
+                    
                 </div>
             </div>
+            
         </div>
-           
+        
         </>
+        
      );
 }
  

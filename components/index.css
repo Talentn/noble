@@ -1,0 +1,45 @@
+/* index.css */
+
+/* Footer styling */
+.footer {
+    background-color: #0369a1;
+    text-align: center;
+    padding: 1rem 0;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+  }
+  
+  /* Social icons */
+  .social-icons {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-bottom: 1rem;
+  }
+  
+  .social-icons a {
+    color: #0369a1;
+    text-decoration: none;
+  }
+  
+  /* Footer links */
+  .footer-links {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 1rem;
+    display: flex;
+    gap: 0.5rem;
+    justify-content: center; /* Center the list horizontally */
+  }
+  
+  .footer-links li {
+    font-weight: bold; /* Add some emphasis to the links */
+    color: #ffffff;
+  }
+  
+  /* Copyright notice */
+  .footer-copyright {
+    color: #ffffff;
+  }
+  
