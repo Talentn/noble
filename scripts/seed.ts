@@ -17,6 +17,23 @@ async function main() {
     } finally {
         await database.$disconnect();
     }
+
+    try{
+        await database.bac.createMany ({
+            data: [
+                { name: "Bac Sciences"},
+                { name: "Bac Technique"},
+                { name: "Bac Mathématiques"},
+                { name: "Bac Informatique"}
+            
+            ]
+        });
+        console.log("Success")
+    } catch (error) {
+        console.log("erreur", error);
+    } finally {
+        await database.$disconnect();
+    }
     
 }
 

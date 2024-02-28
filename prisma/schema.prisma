@@ -105,3 +105,15 @@ model UserProgress{
   }
 
   //Konnect Costumer
+  model Pack {
+  id String @id @default(uuid())
+  name String
+  description String? @db.Text
+  price Float
+  isPublished Boolean @default(false)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+
