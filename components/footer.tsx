@@ -61,7 +61,7 @@ const onClick1 = async () => {
 			</div>
     <div className="flex flex-col justify-center items-center text-center  p-5 bg-gray-50">
 				<h1 className=" text-gray-800 font-semibold">
-                    Abdellatif's Law © {year}
+                    Abdellatif&apos;s Law © {year}
 					
 				</h1>
 	</div>
