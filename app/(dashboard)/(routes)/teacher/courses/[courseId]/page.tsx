@@ -174,11 +174,6 @@ const CourseIdPage = async ({
         
         
      );
-     <div>
-        <footer>
-            <Footer/>
-        </footer>
-     </div>
 }
  
 export default CourseIdPage;
