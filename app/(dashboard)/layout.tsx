@@ -20,7 +20,9 @@ const DashboardLayout =  ({
                 <main className="md:pl-56 pt-[80px] h-full">
                 {children}
                 </main>
+                <div className="hidden">
                 <Footer/>
+                </div>
             </div>
             
     );
