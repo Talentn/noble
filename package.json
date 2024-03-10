@@ -1,6 +1,6 @@
 {
-  "name": "noble",
-  "version": "0.1.0",
+  "name": "nobel",
+  "version": "0.3.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
