@@ -5,6 +5,7 @@ import { SearchInput } from "@/components/search-input";
 import { Categories } from "./_components/categories";
 import { getCourses } from "@/actions/get-courses";
 import { CoursesList } from "@/components/courses-list";
+import Footer from "@/components/footer";
 interface SearchPageProps {
   searchParams: {
     title: string;
@@ -42,6 +43,11 @@ const SearchPage = async ({
           items={categories}
         />
         <CoursesList items={courses}/>
+      </div>
+      <div>
+        <footer>
+            <Footer/>
+        </footer>
       </div>
     </>
    );

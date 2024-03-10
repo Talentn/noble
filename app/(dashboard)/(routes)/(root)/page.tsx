@@ -38,7 +38,11 @@ export default async function Dashboard() {
       <CoursesList
         items={[...coursesInProgress, ...completedCourses]}
       />
-      
+      <div>
+        <footer>
+            <Footer/>
+        </footer>
+      </div>
     </div>
 
       
