@@ -13,6 +13,7 @@ import { ChaptersForm } from "./_components/chapters-form";
 import { Banner } from "@/components/banner";
 import { Actions } from "./_components/actions";
 
+
 const CourseIdPage = async ({
     params
 }: {
@@ -169,6 +170,9 @@ const CourseIdPage = async ({
             </div>
             
         </div>
+        <div className="w-full bottom-0">
+          <Footer/>
+      </div>
         
         </>
         
