@@ -7,7 +7,7 @@ const guestRoutes = [
     {
         icon: Layout,
         label: "Achetés",
-        href: "/owned-courses",
+        href: "/browse",
     },
     {
         icon: Compass,
