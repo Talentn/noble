@@ -5,10 +5,11 @@ import { SpeedInsights } from '@vercel/speed-insights/next';
 import { ClerkProvider } from '@clerk/nextjs'
 import { ToastProvider } from '@/components/providers/toaster-provider'
 import { ConfettiProvider } from '@/components/providers/confetti-provider'
+import { Analytics } from "@vercel/analytics/react"
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'Noble',
+  title: 'Nobel',
   description: 'Description a faire',
 }
  
@@ -25,7 +26,8 @@ export default function RootLayout({
           <ToastProvider />
           {children}
           <SpeedInsights />
-          </body>
+          <Analytics />
+          </body>     
       </html>
     </ClerkProvider>
   )
