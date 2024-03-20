@@ -20,7 +20,7 @@ const Features = async ({}) => {
                 initial="hidden"
                 whileInView={"show"}
                 viewport={{once:false,amount: 0.7}}>
-                    <h3 className='text-3xl text-primary font-bold lg:w-1/2 mb-3'>Comment s'inscrire?</h3>
+                    <h3 className='text-3xl text-primary font-bold lg:w-1/2 mb-3'>Comment s&apos;inscrire?</h3>
                     <p className='text-base text-indigo-800 text-opacity-45'>Suivez ces 3 étapes</p>
                 </motion.div>
                 {/* featured cards */}
