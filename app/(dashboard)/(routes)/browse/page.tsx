@@ -45,11 +45,7 @@ export default async function Dashboard() {
         </footer>
       </div>
     </div>
-      <div className="w-full bottom-0">
-          <Footer/>
-      </div>
-    </div>
-   
+    </div>   
       
   )
 }
