@@ -11,6 +11,7 @@ import { ChapterAccessForm } from "./_components/chapter-access-form";
 import { ChapterVideoFrom } from "./_components/chapter-video-form";
 import { Banner } from "@/components/banner";
 import { ChapterActions } from "./_components/chapter-actions";
+import Footer from "@/components/footer";
 
 const ChapterIdPage = async ({
   params
@@ -137,6 +138,7 @@ const ChapterIdPage = async ({
           </div>
         </div>
         </div>
+        <Footer/>
     </>
     
    );

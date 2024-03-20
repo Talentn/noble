@@ -28,12 +28,8 @@ const onClick1 = async () => {
 
   return (
     <>
-	<div className="bg-gray-50" style={{
-        position: 'fixed',
-        bottom: 0,
-        width: '100%',
-      }}>
-		<div className=" h-1/4 w-full flex md:flex-row flex-col justify-around items-start p-10">
+	
+	<div className="bg-gray-50 h-1/4 w-full flex md:flex-row flex-col justify-around items-start p-10">
 				<div className="p-5 ">
 					<ul>
 						<p className="text-gray-800 font-bold text-3xl pb-6">
@@ -64,15 +60,16 @@ const onClick1 = async () => {
 				</div>
 				
 			</div>
-    <div className="flex flex-col justify-center items-center text-center p-5">
+    <div className="flex flex-col justify-center items-center text-center  p-5 bg-gray-50">
 				<h1 className=" text-gray-800 font-semibold">
                     Abdellatif's Law © {year}
 					
 				</h1>
 	</div>
-	</div>
 	
+    
     </>
+    
     
   );
 };
