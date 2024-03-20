@@ -11,7 +11,7 @@ const AnalyticsPage = async () => {
   const { userId } = auth();
 
   if (!userId) {
-    return redirect("/");
+    return redirect("/browse");
   }
 
   const {

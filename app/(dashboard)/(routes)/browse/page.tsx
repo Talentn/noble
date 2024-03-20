@@ -12,7 +12,7 @@ export default async function Dashboard() {
   const { userId } = auth();
 
   if (!userId) {
-    return redirect("/");
+    return redirect("/browse");
   }
 
   const {

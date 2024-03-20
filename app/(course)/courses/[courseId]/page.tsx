@@ -22,7 +22,7 @@ const CourseIdPage = async ({  params
         });
 
         if (!course) {
-            return redirect("/");
+            return redirect("/browse");
         }
       
     return redirect (`/courses/${course.id}/chapters/${course.chapters[0].id}`);
