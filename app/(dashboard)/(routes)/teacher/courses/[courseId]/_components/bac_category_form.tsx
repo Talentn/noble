@@ -21,21 +21,21 @@ import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { Combobox } from "@/components/ui/combobox";
 
-interface CategoryFormProps {
+interface BacFormProps {
   initialData: Course;
   courseId: string;
   options :{ label: string, value: string;} [];
 };
 
 const formSchema = z.object({
-  categoryId: z.string().min(1),
+  bacId: z.string().min(1),
 });
 
-export const CategoryForm = ({
+export const BacForm = ({
   initialData,
   courseId,
   options,
-}: CategoryFormProps) => {
+}: BacFormProps) => {
   const [isEditing, setIsEditing] = useState(false);
 
   const toggleEdit = () => setIsEditing((current) => !current);
@@ -45,7 +45,7 @@ export const CategoryForm = ({
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      categoryId: initialData?.categoryId || ""
+        bacId : initialData?.bacId || ""
     },
   });
 
@@ -62,19 +62,19 @@ export const CategoryForm = ({
     }
   }
 
-  const selectedOption = options.find((option) => option.value === initialData.categoryId);
+  const selectedOption = options.find((option) => option.value === initialData.bacId);
 
   return (
     <div className="mt-6 border bg-slate-100 rounded-md p-4">
       <div className="font-medium flex items-center justify-between">
-        Catégorie du cour
+        bac du cour
         <Button onClick={toggleEdit} variant="ghost">
           {isEditing ? (
             <>Cancel</>
           ) : (
             <>
               <Pencil className="h-4 w-4 mr-2" />
-              Editer catégorie du cour
+              Editer le bac du cour
             </>
           )}
         </Button>
@@ -82,9 +82,9 @@ export const CategoryForm = ({
       {!isEditing && (
         <p className={cn(
           "text-sm mt-2",
-          !initialData.categoryId && "text-slate-500 italic"
+          !initialData.bacId && "text-slate-500 italic"
         )}>
-          {selectedOption?.label || "Pas du categorie"}
+          {selectedOption?.label || "pas du bac"}
         </p>
       )}
       {isEditing && (
@@ -95,7 +95,7 @@ export const CategoryForm = ({
           >
             <FormField
               control={form.control}
-              name="categoryId"
+              name="bacId"
               render={({ field }) => (
                 <FormItem>
                   <FormControl>

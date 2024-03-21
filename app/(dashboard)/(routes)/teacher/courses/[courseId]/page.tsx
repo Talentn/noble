@@ -12,6 +12,7 @@ import { AttachmentForm } from "./_components/attachment-form";
 import { ChaptersForm } from "./_components/chapters-form";
 import { Banner } from "@/components/banner";
 import { Actions } from "./_components/actions";
+import { BacForm } from "./_components/bac_category_form";
 
 const CourseIdPage = async ({
     params
@@ -48,6 +49,12 @@ const CourseIdPage = async ({
             name: "asc",
         },
     });
+
+    const bacs = await db.bac.findMany({
+        orderBy: {
+            name: "asc",
+        },
+    })
 
 
 
@@ -120,6 +127,14 @@ const CourseIdPage = async ({
                         options={categories.map((category) => ({
                             label: category.name,
                             value: category.id,
+                        }))}
+                    />
+                    <BacForm
+                        initialData={course}
+                        courseId={course.id}
+                        options={bacs.map((bac) => ({
+                            label : bac.name,
+                            value : bac.id,
                         }))}
                     />
                 </div>
