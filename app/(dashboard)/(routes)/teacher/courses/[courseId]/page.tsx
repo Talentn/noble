@@ -129,14 +129,6 @@ const CourseIdPage = async ({
                             value: category.id,
                         }))}
                     />
-                    <BacForm
-                        initialData={course}
-                        courseId={course.id}
-                        options={bacs.map((bac) => ({
-                            label : bac.name,
-                            value : bac.id,
-                        }))}
-                    />
                 </div>
                 <div className="space-y-6">
                     <div>

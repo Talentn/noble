@@ -21,8 +21,6 @@ model Course {
   categoryId String?
   category Category? @relation(fields: [categoryId], references: [id])
 
-  bacId String?
-  bac Bac? @relation(fields: [bacId], references:[id])
 
   chapters Chapter[]
   attachments Attachment[]
@@ -30,7 +28,6 @@ model Course {
   createAt DateTime @default(now())
   updateAt DateTime @updatedAt
   @@index([categoryId])
-  @@index([bacId])
   @@fulltext([title])
 }
 
@@ -39,12 +36,6 @@ model Category {
   name String @unique
   courses Course[]
 
-}
-
-model Bac {
-  id String @id @default(uuid())
-  name String @unique
-  courses Course[]
 }
 
 model Attachment {

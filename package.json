@@ -63,6 +63,6 @@
     "zustand": "^4.5.0"
   },
   "devDependencies": {
-    "prisma": "^5.8.1"
+    "prisma": "^5.11.0"
   }
 }
