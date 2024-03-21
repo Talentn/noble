@@ -21,7 +21,7 @@ export default async function Dashboard() {
   } = await getDashboardCourses(userId);
 
   return (
-    
+    <>
     <div className="p-6 space-y-4">
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
        <InfoCard
@@ -39,13 +39,14 @@ export default async function Dashboard() {
       <CoursesList
         items={[...coursesInProgress, ...completedCourses]}
       />
+      </div>
+
       <div>
-        </div>
         <footer>
             <Footer/>
         </footer>
       </div>
-
+      </>
   )
 }
 
