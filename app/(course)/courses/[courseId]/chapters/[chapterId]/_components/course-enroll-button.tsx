@@ -36,9 +36,9 @@ export const CourseEnrollButton = ({
     <Button
       size="sm"
       className="w-full md:w-auto"
-      onClick={price === 0 ? handleFreeEnrollment : undefined}
+      onClick={price === 0.1 ? handleFreeEnrollment : undefined}
     >
-      {price === 0 ? "Inscription gratuite" : `S'inscrire pour ${formatPrice(price)}`}
+      {price === 0.1 ? "Inscription gratuite" : `S'inscrire pour ${formatPrice(price)}`}
     </Button>
   );
 };

@@ -29,7 +29,7 @@ interface PriceFormProps {
 };
 
 const formSchema = z.object({
-  price: z.coerce.number().min(0),
+  price: z.coerce.number(),
 });
 
 export const PriceForm = ({
