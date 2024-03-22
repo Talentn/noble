@@ -28,7 +28,7 @@ model Course {
   createAt DateTime @default(now())
   updateAt DateTime @updatedAt
   @@index([categoryId])
-  @@fulltext([title])
+    @@fulltext([title])
 }
 
 model Category {
