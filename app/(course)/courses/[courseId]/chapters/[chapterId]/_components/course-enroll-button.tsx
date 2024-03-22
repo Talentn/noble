@@ -17,12 +17,11 @@ export const CourseEnrollButton = ({
 }: CourseEnrollButtonProps) => {
   const handleFreeEnrollment = async () => {
     try {
-      // Create a new purchase record with a price of 0 for the free course
+      // Create a new purchase record for the free course
       await db.purchase.create({
         data: {
           userId,
           courseId,
-          price: 0,
         },
       });
 
