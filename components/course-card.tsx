@@ -15,7 +15,6 @@ interface CourseCardProps {
     category: string;
 }
 
-
 export const CourseCard = ({
     id,
     title,
@@ -53,16 +52,15 @@ export const CourseCard = ({
                 </div>
                 {progress !== null ? (
                     <CourseProgress
-                    variant={progress === 100 ? "success" : "default"}
-                    size="sm"
-                    value={progress}
-                  />
-                ) : ( 
+                        variant={progress === 100 ? "success" : "default"}
+                        size="sm"
+                        value={progress}
+                    />
+                ) : (
                     <p className="text-md md:text-sm font-meduim text-slate-700">
-                        {formatPrice(price)}
+                        {price === 0 ? "Inscription gratuite" : formatPrice(price)}
                     </p>
-                )    
-                }
+                )}
             </div>
         </div>
     </Link>
