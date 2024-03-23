@@ -5,5 +5,5 @@ export const config = {
 };
 
 export default authMiddleware({
-  publicRoutes: ["/api/uploadthing" , "/"], // Keep this for the public API route
+  publicRoutes: ["/api/uploadthing" , "/" , "https://api.preprod.konnect.network/api/v2/payments/init-payment"], // Keep this for the public API route
 });
