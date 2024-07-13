@@ -28,13 +28,14 @@ const onClick1 = async () => {
 
   return (
     <>
-    <div className="bg-gray-50 h-1/4 w-full flex md:flex-row flex-col justify-around items-start p-10">
-				<div className="p-5 ">
+    
+	<div className="bg-gray-50 h-1/5 w-full flex md:flex-row flex-col justify-center items-start">
+				<div className="p-4 ">
 					<ul>
-						<p className="text-gray-800 font-bold text-3xl pb-6">
+						<p className="text-gray-800 font-bold text-2xl pb-4">
 							Trouvez<span className="text-blue-600">-nous</span>
 						</p>
-						<div className="flex gap-6 pb-5">
+						<div className="flex gap-6 pb-3">
                         <a href="https://www.instagram.com/jassem.debbich/">
                             <FaInstagram className="text-2xl cursor-pointer hover:text-yellow-600" />
                         </a>
@@ -45,28 +46,42 @@ const onClick1 = async () => {
 						</div>
 					</ul>
 				</div>
-				<div className="p-2">
+				<div className="p-9 ">
 					<ul>
-						<p className="text-gray-800 font-bold text-2xl pb-4">Site Web</p>
-						<li className="text-gray-500 text-md pb-2 font-semibold hover:text-blue-600 cursor-pointer">
-                            <a onClick={onClick1}>Home</a>
-						</li>
-						<li className="text-gray-500 text-md pb-2 font-semibold hover:text-blue-600 cursor-pointer">
+						<li className="text-gray-500 text-md pb-1 font-semibold hover:text-blue-600 cursor-pointer">
                             <a onClick={onClick}>Nos Produits</a>
 						</li>
 						
 					</ul>
 				</div>
+				<div className="p-9 ">
+					<ul>
+						
+						<li className="text-gray-500 text-md pb-1 font-semibold hover:text-blue-600 cursor-pointer">
+                            <a onClick={onClick1}>Politique du site</a>
+						</li>
+					</ul>
+				</div>
+				<div className="p-9 ">
+					<ul>
+						
+						<li className="text-gray-500 text-md pb-1 font-semibold hover:text-blue-600 cursor-pointer">
+                            <a onClick={onClick1}>Developpeurs</a>
+						</li>
+						
+					</ul>
+				</div>
 				
-			</div>
-    <div className="flex flex-col justify-center items-center text-center  p-5 bg-gray-50">
+	</div>
+    <div className="flex flex-col justify-center items-center text-center p-1 bg-gray-50">
 				<h1 className=" text-gray-800 font-semibold">
-                    Abdellatif&apos;s Law © {year}
+                    Nobel © {year}
 					
 				</h1>
 	</div>
     </>
     
+	
     
   );
 };
