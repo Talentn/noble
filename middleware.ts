@@ -5,5 +5,5 @@ export const config = {
 };
 
 export default authMiddleware({
-  publicRoutes: ["/api/uploadthing"], // Keep this for the public API route
+  publicRoutes: ["/api/uploadthing", "/api/webhook"]// Keep this for the public API route
 });
