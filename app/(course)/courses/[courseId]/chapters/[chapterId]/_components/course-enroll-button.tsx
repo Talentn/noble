@@ -11,24 +11,20 @@ interface CourseEnrollButtonProps {
     courseId: string;
 }
 
-export const CourseEnrollButton = ({
-    price,
-    courseId,
-}: CourseEnrollButtonProps) => {
+export const CourseEnrollButton = ({ price, courseId }: CourseEnrollButtonProps) => {
     const [isLoading, setIsLoading] = useState(false);
 
     const onClick = async () => {
         try {
             setIsLoading(true);
-            // Make a POST request to your backend API route to initiate payment
             const response = await axios.post(`/api/courses/${courseId}/checkout`);
 
             // Redirect the user to ClicToPay’s payment page
             window.location.assign(response.data.url);
 
         } catch (error) {
-            console.error("Error:", error);
-            toast.error("Une erreur s'est produite");
+            console.error('Error:', error);
+            toast.error("Une erreur s&apos;est produite");
         } finally {
             setIsLoading(false);
         }

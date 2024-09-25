@@ -33,8 +33,10 @@ export async function POST(req: Request, { params }: { params: { courseId: strin
                 returnUrl: `${process.env.NEXT_PUBLIC_APP_URL}/courses/${courseId}?success=1`,
                 failUrl: `${process.env.NEXT_PUBLIC_APP_URL}/courses/${courseId}?canceled=1`,
             }),
+            
         });
-
+        console.log('CLICTOPAY_USER:', process.env.CLICTOPAY_USER);
+        console.log('CLICTOPAY_PASSWORD:', process.env.CLICTOPAY_PASSWORD);        
         const data = await response.json();
 
         if (!data.formUrl) {
