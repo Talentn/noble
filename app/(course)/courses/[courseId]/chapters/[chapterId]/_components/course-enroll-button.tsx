@@ -37,7 +37,7 @@ export const CourseEnrollButton = ({ price, courseId }: CourseEnrollButtonProps)
             size="sm"
             className="w-full md:w-auto"
         >
-            S'inscrire pour {formatPrice(price)}
+            S&apos;inscrire pour {formatPrice(price)}
         </Button>
     );
 };
