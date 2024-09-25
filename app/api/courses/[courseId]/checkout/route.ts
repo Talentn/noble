@@ -1,94 +1,52 @@
+import { NextResponse } from "next/server";
 import { db } from "@/lib/db";
 import { currentUser } from "@clerk/nextjs";
-import { NextResponse } from "next/server";
-import Stripe from "stripe";
-import { stripe } from "@/lib/stripe";
 
-export async function POST(
-    req: Request,
-    { params }: { params: { courseId: string } }
-) {
+export async function POST(req: Request, { params }: { params: { courseId: string } }) {
+    const { courseId } = params;
     try {
+        // Retrieve the user (if necessary)
         const user = await currentUser();
         if (!user || !user.id || !user.emailAddresses?.[0]?.emailAddress) {
             return new NextResponse("Unauthorized", { status: 401 });
         }
-        
+
+        // Retrieve the course information from the database
         const course = await db.course.findUnique({
-            where: {
-                id: params.courseId,
-                isPublished: true,
-            }
+            where: { id: courseId, isPublished: true },
         });
 
         if (!course) {
             return new NextResponse("Course not found", { status: 404 });
         }
 
-        const purchase = await db.purchase.findUnique({
-            where: {
-                userId_courseId: {
-                    userId: user.id,
-                    courseId: params.courseId,
-                },
-            },
+        // Replace with the ClicToPay test URL
+        const response = await fetch('https://test.clictopay.com/payment/rest/register.do', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                userName: process.env.CLICTOPAY_USER,  // Merchant username
+                password: process.env.CLICTOPAY_PASSWORD,  // Merchant password
+                orderNumber: courseId,
+                amount: Math.round(course.price! * 100),  // Amount in cents
+                currency: '788',  // TND (Tunisian Dinar)
+                returnUrl: `${process.env.NEXT_PUBLIC_APP_URL}/courses/${courseId}?success=1`,
+                failUrl: `${process.env.NEXT_PUBLIC_APP_URL}/courses/${courseId}?canceled=1`,
+            }),
         });
 
-        if (purchase) {
-            return new NextResponse("Already purchased", { status: 400 });
+        const data = await response.json();
+
+        if (!data.formUrl) {
+            console.error('ClicToPay Error:', data);
+            return new NextResponse("Failed to create payment session", { status: 500 });
         }
 
-        const line_items: Stripe.Checkout.SessionCreateParams.LineItem[] = [
-            {
-                price_data: {
-                    currency: "USD",
-                    product_data: {
-                        name: course.title,
-                        description: course.description!,
-                    },
-                    unit_amount: Math.round(course.price! * 100),
-                },
-                quantity: 1,
-            },
-        ];
+        // Return the ClicToPay form URL to the client
+        return NextResponse.json({ url: data.formUrl });
 
-        let stripeCustomer = await db.stripeCustomer.findUnique({
-            where: {
-                userId: user.id,
-            },
-            select: {
-                stripeCustomerId: true,
-            },
-        });
-
-        if (!stripeCustomer) {
-            const customer = await stripe.customers.create({
-                email: user.emailAddresses?.[0]?.emailAddress,
-            });
-
-            stripeCustomer = await db.stripeCustomer.create({
-                data: {
-                    userId: user.id,
-                    stripeCustomerId: customer.id,
-                },
-            });
-        }
-
-        const session = await stripe.checkout.sessions.create({
-            customer: stripeCustomer.stripeCustomerId,
-            line_items,
-            mode: "payment",
-            success_url: `${process.env.NEXT_PUBLIC_APP_URL}/courses/${course.id}?success=1`,
-            cancel_url: `${process.env.NEXT_PUBLIC_APP_URL}/courses/${course.id}?canceled=1`,
-            metadata: {
-                userId: user.id,
-                courseId: course.id,
-            },
-        });
-
-        return NextResponse.json({ url: session.url });
     } catch (error) {
-        console.error(error);
+        console.error('Error creating payment session:', error);
         return new NextResponse("Internal server error", { status: 500 });
     }
 }

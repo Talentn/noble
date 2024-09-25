@@ -14,28 +14,34 @@ interface CourseEnrollButtonProps {
 export const CourseEnrollButton = ({
     price,
     courseId,
-}: CourseEnrollButtonProps ) => {
-    const [isLaoding, setIsLoading] = useState(false);
+}: CourseEnrollButtonProps) => {
+    const [isLoading, setIsLoading] = useState(false);
+
     const onClick = async () => {
         try {
             setIsLoading(true);
-            const response = await axios.post(`/api/courses/${courseId}/checkout`)
+            // Make a POST request to your backend API route to initiate payment
+            const response = await axios.post(`/api/courses/${courseId}/checkout`);
+
+            // Redirect the user to ClicToPay’s payment page
             window.location.assign(response.data.url);
 
-        } catch {
+        } catch (error) {
+            console.error("Error:", error);
             toast.error("Une erreur s'est produite");
         } finally {
-        setIsLoading(false);
-    }
-}
+            setIsLoading(false);
+        }
+    };
 
     return (
-        <Button 
-        onClick={onClick}
-        disabled={isLaoding}        
-        size="sm" 
-                className="w-full md:w-auto">
-            S&apos;inscrire pour {formatPrice(price)}
+        <Button
+            onClick={onClick}
+            disabled={isLoading}
+            size="sm"
+            className="w-full md:w-auto"
+        >
+            S'inscrire pour {formatPrice(price)}
         </Button>
-    )
-}
+    );
+};
