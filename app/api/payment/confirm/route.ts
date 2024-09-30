@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { db } from "@/lib/db";
+import axios from "axios";
 
 export async function POST(req: NextRequest) {
     try {
@@ -19,7 +20,7 @@ export async function POST(req: NextRequest) {
             return NextResponse.json({ success: false, message: "Internal server error: Missing payment credentials." }, { status: 500 });
         }
 
-        // Call ClicToPay to check the payment status using GET request as per manual example
+        // Create query parameters
         const queryParams = new URLSearchParams({
             userName: clictopayUser,
             password: clictopayPassword,
@@ -27,41 +28,31 @@ export async function POST(req: NextRequest) {
             language: "en",
         }).toString();
 
-        const response = await fetch(`https://test.clictopay.com/payment/rest/getOrderStatus.do?${queryParams}`, {
-            method: 'GET',
-        });
+        // Make GET request using Axios
+        const response = await axios.get(`https://test.clictopay.com/payment/rest/getOrderStatus.do?${queryParams}`);
 
-        // Log response status and text for debugging purposes
+        // Log response status and data for debugging purposes
         console.log('ClicToPay API Response Status:', response.status, response.statusText);
-
-        if (!response.ok) {
-            const errorDetails = await response.text();
-            console.error('Error Response Body:', errorDetails);
-            return NextResponse.json({ success: false, message: "Error contacting payment service." }, { status: 500 });
-        }
-
-        const statusData = await response.json();
-        console.log("Payment Status Data:", statusData);
+        console.log("Payment Status Data:", response.data);
 
         // Check if the payment was successful
-// Check if the payment was successful
-if (statusData.OrderStatus === 2) {
-    try {
-        // Save the purchase in the database
-        const purchase = await db.purchase.create({
-            data: {
-                userId,
-                courseId,
-            },
-        });
-        
-        console.log("Purchase created successfully:", purchase);
-        return NextResponse.json({ success: true, message: "Payment successful." });
-    } catch (dbError) {
-        console.error("Database Error during purchase creation:", dbError);
-        return NextResponse.json({ success: false, message: "Database error while saving purchase." }, { status: 500 });
-    }
-}
+        if (response.data.OrderStatus === 2) {
+            try {
+                // Save the purchase in the database
+                const purchase = await db.purchase.create({
+                    data: {
+                        userId,
+                        courseId,
+                    },
+                });
+
+                console.log("Purchase created successfully:", purchase);
+                return NextResponse.json({ success: true, message: "Payment successful." });
+            } catch (dbError) {
+                console.error("Database Error during purchase creation:", dbError);
+                return NextResponse.json({ success: false, message: "Database error while saving purchase." }, { status: 500 });
+            }
+        }
 
         return NextResponse.json({ success: false, message: "Payment failed or not completed." });
     } catch (error) {
