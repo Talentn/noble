@@ -19,12 +19,15 @@ export const CourseEnrollButton = ({ price, courseId }: CourseEnrollButtonProps)
             setIsLoading(true);
             const response = await axios.post(`/api/courses/${courseId}/checkout`);
 
-            // Redirect the user to ClicToPay’s payment page
-            window.location.assign(response.data.url);
-
-        } catch (error) {
-            console.error('Error:', error);
-            toast.error("Une erreur s&apos;est produite");
+            if (response.data?.url) {
+                // Redirect the user to ClicToPay’s payment page
+                window.location.assign(response.data.url);
+            } else {
+                throw new Error("Échec de la création de la session de paiement. Aucune URL retournée.");
+            }
+        } catch (error: any) {
+            console.error("Erreur:", error);
+            toast.error(error.response?.data || "Une erreur s'est produite. Veuillez réessayer.");
         } finally {
             setIsLoading(false);
         }
