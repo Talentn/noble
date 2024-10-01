@@ -1,6 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
+import axios from 'axios';
+import https from 'https';
+import fs from 'fs';
 import { db } from "@/lib/db";
-import axios from "axios";
 
 export async function POST(req: NextRequest) {
     try {
@@ -11,27 +13,27 @@ export async function POST(req: NextRequest) {
             return NextResponse.json({ success: false, message: "Missing required parameters." }, { status: 400 });
         }
 
-        // Prepare parameters for payment status check
-        const clictopayUser = process.env.CLICTOPAY_USER;
-        const clictopayPassword = process.env.CLICTOPAY_PASSWORD;
+        // Load the CA bundle
+        const caBundle = fs.readFileSync('.\certs\STAR_nobel_tn.ca-bundle');  // Update the path here
 
-        if (!clictopayUser || !clictopayPassword) {
-            console.error("Missing ClicToPay credentials in environment variables");
-            return NextResponse.json({ success: false, message: "Internal server error: Missing payment credentials." }, { status: 500 });
-        }
+        // Create an HTTPS agent with the CA bundle
+        const agent = new https.Agent({
+            ca: caBundle,
+        });
 
-        // Create query parameters
+        // Prepare query parameters
         const queryParams = new URLSearchParams({
-            userName: clictopayUser,
-            password: clictopayPassword,
+            userName: process.env.CLICTOPAY_USER!,
+            password: process.env.CLICTOPAY_PASSWORD!,
             orderId: orderId,
             language: "en",
         }).toString();
 
-        // Make GET request using Axios
-        const response = await axios.get(`https://test.clictopay.com/payment/rest/getOrderStatus.do?${queryParams}`);
+        // Make GET request using Axios with the custom agent
+        const response = await axios.get(`https://test.clictopay.com/payment/rest/getOrderStatus.do?${queryParams}`, {
+            httpsAgent: agent,
+        });
 
-        // Log response status and data for debugging purposes
         console.log('ClicToPay API Response Status:', response.status, response.statusText);
         console.log("Payment Status Data:", response.data);
 
