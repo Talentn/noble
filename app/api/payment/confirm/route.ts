@@ -2,8 +2,8 @@ import { NextRequest, NextResponse } from "next/server";
 import axios from 'axios';
 import https from 'https';
 import fs from 'fs';
-import path from "path";
 import { db } from "@/lib/db";
+import path from "path";
 
 export async function POST(req: NextRequest) {
     try {
@@ -14,16 +14,16 @@ export async function POST(req: NextRequest) {
             return NextResponse.json({ success: false, message: "Missing required parameters." }, { status: 400 });
         }
 
-        // Load the ClickToPay CA bundle
-        const clicToPayCaBundlePath = path.join(process.cwd(), 'certs', 'STAR_nobel_tn.ca-bundle'); // Adjust if necessary
-        const clicToPayCaBundle = fs.readFileSync(clicToPayCaBundlePath);
+        // Load the CA bundle
+        const caBundlePath = path.join(process.cwd(), 'certs', 'STAR_nobel_tn.ca-bundle');
+        const caBundle = fs.readFileSync(caBundlePath);
 
-        // Create an HTTPS agent with the ClickToPay CA bundle
-        const clicToPayAgent = new https.Agent({
-            ca: clicToPayCaBundle,
+        // Create an HTTPS agent with the CA bundle
+        const agent = new https.Agent({
+            rejectUnauthorized: false,
         });
 
-        // Prepare query parameters for ClickToPay
+        // Prepare query parameters
         const queryParams = new URLSearchParams({
             userName: process.env.CLICTOPAY_USER!,
             password: process.env.CLICTOPAY_PASSWORD!,
@@ -31,9 +31,9 @@ export async function POST(req: NextRequest) {
             language: "en",
         }).toString();
 
-        // Make GET request to ClickToPay using Axios with the custom agent
+        // Make GET request using Axios with the custom agent
         const response = await axios.get(`https://test.clictopay.com/payment/rest/getOrderStatus.do?${queryParams}`, {
-            httpsAgent: clicToPayAgent, // Use the ClickToPay agent
+            httpsAgent: agent,
         });
 
         console.log('ClicToPay API Response Status:', response.status, response.statusText);
