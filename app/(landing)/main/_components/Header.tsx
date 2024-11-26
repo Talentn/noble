@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
 import { FaBars, FaTimes } from 'react-icons/fa';
+import { useRouter } from "next/navigation";
 
 const Header: React.FC = () => {
     const [menuOpen, setMenuOpen] = useState(false);
@@ -15,6 +16,8 @@ const Header: React.FC = () => {
         document.getElementById(sectionId)?.scrollIntoView({ behavior: 'smooth' });
         setMenuOpen(false); // Close the menu when an item is clicked
     };
+
+    const router = useRouter();
 
     return (
         <>
@@ -57,19 +60,29 @@ const Header: React.FC = () => {
                         <div className="hidden lg:flex flex-grow justify-center mx-20">
                             <nav>
                                 <ul className="flex space-x-8 lg:space-x-16">
-                                    <li><button onClick={() => scrollToSection('home')} className="hover:text-[#fabe07]">Home</button></li>
-                                    <li><button onClick={() => scrollToSection('about')} className="hover:text-[#fabe07]">About</button></li>
-                                    <li><button onClick={() => scrollToSection('overview')} className="hover:text-[#fabe07]">Overview</button></li>
-                                    <li><button onClick={() => scrollToSection('register')} className="hover:text-[#fabe07]">How to register</button></li>
-                                    <li><button onClick={() => scrollToSection('pricing')} className="hover:text-[#fabe07]">Pricing</button></li>
+                                    <li><button onClick={() => scrollToSection('home')} className="hover:text-[#fabe07]">Accueil</button></li>
+                                    <li><button onClick={() => scrollToSection('about')} className="hover:text-[#fabe07]">A propos</button></li>
+                                    <li><button onClick={() => scrollToSection('overview')} className="hover:text-[#fabe07]">Apercu</button></li>
+                                    <li><button onClick={() => scrollToSection('register')} className="hover:text-[#fabe07]">Comment s&apos;inscrire</button></li>
+                                    <li><button onClick={() => scrollToSection('pricing')} className="hover:text-[#fabe07]">Tarification</button></li>
                                 </ul>
                             </nav>
                         </div>
 
                         {/* Log In / Sign Up Buttons */}
                         <div className="hidden lg:flex items-center ml-auto space-x-6">
-                            <button className="bg-[#121421] px-4 py-2 rounded-full hover:bg-blue-600">Log in</button>
-                            <button className="bg-[#fabe07] text-[#121421] px-4 py-2 rounded-full hover:bg-yellow-600">Sign up</button>
+                            <button
+                                onClick={() => router.push("/sign-in")}
+                                className="bg-[#121421] text-white px-4 py-2 rounded-full hover:bg-blue-600"
+                            >
+                                Se connecter
+                            </button>
+                            <button
+                                onClick={() => router.push("/sign-up")}
+                                className="bg-[#fabe07] text-[#121421] px-4 py-2 rounded-full hover:bg-yellow-600"
+                            >
+                                S&apos;inscrire
+                            </button>
                         </div>
 
                         {/* Burger Menu Icon for Mobile & Tablet */}
@@ -88,16 +101,16 @@ const Header: React.FC = () => {
                             </button>
                             <nav className="mt-10">
                                 <ul className="space-y-4 text-xl">
-                                    <li><button onClick={() => scrollToSection('home')} className="hover:text-[#fabe07]">Home</button></li>
-                                    <li><button onClick={() => scrollToSection('about')} className="hover:text-[#fabe07]">About</button></li>
-                                    <li><button onClick={() => scrollToSection('overview')} className="hover:text-[#fabe07]">Overview</button></li>
-                                    <li><button onClick={() => scrollToSection('register')} className="hover:text-[#fabe07]">How to register</button></li>
-                                    <li><button onClick={() => scrollToSection('pricing')} className="hover:text-[#fabe07]">Pricing</button></li>
+                                    <li><button onClick={() => scrollToSection('home')} className="hover:text-[#fabe07]">Accueil</button></li>
+                                    <li><button onClick={() => scrollToSection('about')} className="hover:text-[#fabe07]">A propos</button></li>
+                                    <li><button onClick={() => scrollToSection('overview')} className="hover:text-[#fabe07]">Apercu</button></li>
+                                    <li><button onClick={() => scrollToSection('register')} className="hover:text-[#fabe07]">Comment s&apos;inscrire</button></li>
+                                    <li><button onClick={() => scrollToSection('pricing')} className="hover:text-[#fabe07]">Tarification</button></li>
                                 </ul>
                             </nav>
                             <div className="mt-8 flex flex-col space-y-4">
-                                <button className="bg-[#121421] px-4 py-2 rounded-full hover:bg-blue-600">Log in</button>
-                                <button className="bg-[#fabe07] text-[#121421] px-4 py-2 rounded-full hover:bg-yellow-600">Sign up</button>
+                                <button className="bg-[#121421] px-4 py-2 rounded-full hover:bg-blue-600">Se connecter</button>
+                                <button className="bg-[#fabe07] text-[#121421] px-4 py-2 rounded-full hover:bg-yellow-600">S&apos;inscrire</button>
                             </div>
                         </div>
                     )}
@@ -109,25 +122,25 @@ const Header: React.FC = () => {
                         {/* Text and Button Section */}
                         <div className="text-center xl:text-left mt-8 xl:mt-0 xl:ml-40 xl:w-[690px] w-full">
                             <h1 className="font-extrabold text-4xl md:text-5xl xl:text-7xl z-20 text-white">
-                                Unlock the Power of <span className="text-yellow-500">Math</span> & <span className="text-blue-500">Physics</span>, One Lesson at a Time
+                              Déverrouillez la puissance de la  <span className="text-blue-500">Physique</span>, une leçon à la fois
                             </h1>
 
                             {/* Supporting Text */}
                             <p className="text-base md:text-lg xl:text-xl text-white z-20 mt-4 xl:w-[600px] w-full">
-                                Transform complex concepts into clear understanding with our interactive lessons. Build your knowledge step by step, and master math and physics at your own pace.
+                            Transformez des concepts complexes en une compréhension claire grâce à nos leçons interactives. Construisez votre savoir étape par étape et maîtrisez la physique à votre propre rythme
                             </p>
 
                             {/* Button */}
                             <button className="mt-8 bg-[#fabe07] text-[#121421] px-6 py-3 rounded-full hover:bg-yellow-600">
-                                Learn more
+                            En savoir plus
                             </button>
 
                             {/* Offers Section */}
                             <div className="mt-10">
                                 {/* Offers Header */}
                                 <div className="flex justify-between items-center mb-6">
-                                    <h2 className="text-2xl font-bold">Our offers</h2>
-                                    <a href="#" className="text-yellow-400 hover:underline">See more details</a>
+                                    <h2 className="text-2xl font-bold">Nos offres</h2>
+                                    <a href="#" className="text-yellow-400 hover:underline">Voir plus de détails</a>
                                 </div>
 
                                 {/* Offer Cards */}
@@ -136,7 +149,7 @@ const Header: React.FC = () => {
                                     <div className="bg-[#00B47F] text-white rounded-lg p-4 flex flex-col justify-between">
                                         <img src="/student.png" alt="Only one exam" className="w-full rounded-lg mb-4" />
                                         <div className="flex justify-between items-center">
-                                            <span className="text-lg font-bold">Only one exam</span>
+                                            <span className="text-lg font-bold">Un seul examen</span>
                                             <span>15Dt</span>
                                         </div>
                                     </div>
@@ -145,7 +158,7 @@ const Header: React.FC = () => {
                                     <div className="bg-[#5164DA] text-white rounded-lg p-4 flex flex-col justify-between">
                                         <img src="/teacher.png" alt="All bac exams" className="w-full rounded-lg mb-4" />
                                         <div className="flex justify-between items-center">
-                                            <span className="text-lg font-bold">All bac exams</span>
+                                            <span className="text-lg font-bold">Tous les examens du bac</span>
                                             <span>200Dt</span>
                                         </div>
                                     </div>
@@ -187,7 +200,7 @@ const Header: React.FC = () => {
                                 {/* Text Content */}
                                 <div className="ml-2 sm:ml-4 text-white">
                                     <p className="text-sm sm:text-lg font-semibold">+200 hrs</p>
-                                    <p className="text-xs sm:text-sm">of recorded video</p>
+                                    <p className="text-xs sm:text-sm">De vidéo enregistrée</p>
                                 </div>
                             </div>
 
@@ -204,7 +217,7 @@ const Header: React.FC = () => {
                                 {/* Text Content */}
                                 <div className="ml-2 sm:ml-4 text-white">
                                     <p className="text-sm sm:text-lg font-semibold">+250k</p>
-                                    <p className="text-xs sm:text-sm">Saved courses</p>
+                                    <p className="text-xs sm:text-sm">Cours enregistrés</p>
                                 </div>
                             </div>
                         </div>

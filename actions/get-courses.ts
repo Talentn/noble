@@ -1,74 +1,78 @@
 import { Category, Course } from "@prisma/client";
-
 import { getProgress } from "@/actions/get-progress";
 import { db } from "@/lib/db";
 
 type CourseWithProgressWithCategory = Course & {
-    category: Category | null;
-    chapters: { id: string }[];
-    progress: number | null;
+  category: Category | null;
+  chapters: { id: string }[];
+  progress: number | null;
 };
 
 type GetCourses = {
-    userId: string;
-    title?: string;
-    categoryId?: string;
+  userId?: string; // Optional userId
+  title?: string;
+  categoryId?: string;
 };
 
 export const getCourses = async ({
-    userId,
-    title,
-    categoryId,
+  userId,
+  title,
+  categoryId,
 }: GetCourses): Promise<CourseWithProgressWithCategory[]> => {
-    try {
-        const courses = await db.course.findMany({
-            where: {
-                isPublished: true,
-                title: {
-                    contains: title,
-                },
-                categoryId: categoryId,
-            },
-            include: {
-                category: true,
-                chapters: {
-                    where: {
-                        isPublished: true,
-                    },
-                    select: {
-                        id: true,
-                    }
-                },
-                purchases: {
-                    where : {
-                        userId,
-                    }
-                }    
-            },
-            orderBy: {
-                createAt: "desc",
-            },
-        });
-        const coursesWithProgress: CourseWithProgressWithCategory[] = await  Promise.all (
-            courses.map(async (course) => {
-                if (course.purchases.length === 0) {
-                return {
-                    ...course,
-                    progress: null,
-                }
+  try {
+    const courses = await db.course.findMany({
+      where: {
+        isPublished: true,
+        title: {
+          contains: title,
+        },
+        categoryId: categoryId,
+      },
+      include: {
+        category: true,
+        chapters: {
+          where: {
+            isPublished: true,
+          },
+          select: {
+            id: true,
+          },
+        },
+        purchases: userId
+          ? {
+              where: {
+                userId, // Only filter purchases if userId is provided
+              },
             }
+          : undefined,
+      },
+      orderBy: {
+        createAt: "desc",
+      },
+    });
 
-            const progressPercentage = await getProgress(userId, course.id);
-            return {
-                ...course,
-                progress: progressPercentage,
-            };
-            })
-        );
+    const coursesWithProgress: CourseWithProgressWithCategory[] = await Promise.all(
+      courses.map(async (course) => {
+        // If userId is undefined or there are no purchases, progress is null
+        if (!userId || course.purchases.length === 0) {
+          return {
+            ...course,
+            progress: null,
+          };
+        }
 
-        return coursesWithProgress;
-    } catch (error) {
-        console.log("[GET_COURSES]", error);
-        return [];
-    }
-}
+        // Otherwise, calculate progress
+        const progressPercentage = await getProgress(userId, course.id);
+        return {
+          ...course,
+          progress: progressPercentage,
+        };
+      })
+    );
+
+    return coursesWithProgress;
+  } catch (error) {
+    console.error("[GET_COURSES]", error);
+    return [];
+  }
+};

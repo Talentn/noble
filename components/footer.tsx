@@ -1,73 +1,79 @@
-// Footer.jsx
-"use client";
 import React from 'react';
-import { FaInstagram } from "react-icons/fa";
-import { FaFacebook } from "react-icons/fa";
-import toast from "react-hot-toast";
-import { useRouter } from "next/navigation";
+import { FaInstagram, FaFacebook } from "react-icons/fa";
 
-const Footer = () => {
-  const year = new Date().getFullYear();
-  const router = useRouter();
-  
-  const onClick = async () => {
-	try {
-		router.push('/search')
-	} catch {
-		toast.error('erreur')
-	}
-}
-const onClick1 = async () => {
-	try {
-		router.push('/')
-	} catch {
-		toast.error('erreur')
-	}
-}
-  
-
+const Footer: React.FC = () => {
   return (
-    <>
-    <div className="bg-gray-50 h-1/4 w-full flex md:flex-row flex-col justify-around items-start p-10">
-				<div className="p-5 ">
-					<ul>
-						<p className="text-gray-800 font-bold text-3xl pb-6">
-							Trouvez<span className="text-blue-600">-nous</span>
-						</p>
-						<div className="flex gap-6 pb-5">
-                        <a href="https://www.instagram.com/jassem.debbich/">
-                            <FaInstagram className="text-2xl cursor-pointer hover:text-yellow-600" />
-                        </a>
-                        <a href="https://www.instagram.com/jassem.debbich/">
-                            <FaFacebook className="text-2xl cursor-pointer hover:text-blue-600" />
-                        </a>
-							
-						</div>
-					</ul>
-				</div>
-				<div className="p-2">
-					<ul>
-						<p className="text-gray-800 font-bold text-2xl pb-4">Site Web</p>
-						<li className="text-gray-500 text-md pb-2 font-semibold hover:text-blue-600 cursor-pointer">
-                            <a onClick={onClick1}>Home</a>
-						</li>
-						<li className="text-gray-500 text-md pb-2 font-semibold hover:text-blue-600 cursor-pointer">
-                            <a onClick={onClick}>Nos Produits</a>
-						</li>
-						
-					</ul>
-				</div>
-				
-			</div>
-    <div className="flex flex-col justify-center items-center text-center  p-5 bg-gray-50">
-				<h1 className=" text-gray-800 font-semibold">
-                    Abdellatif&apos;s Law © {year}
-					
-				</h1>
-	</div>
-    </>
-    
-    
+    <footer>
+      {/* Main Footer Section */}
+      <div className="bg-[#121421] py-12">
+        <div className="container mx-auto px-4 flex flex-col md:flex-row justify-between items-start space-y-8 md:space-y-0">
+          {/* Logo and Description */}
+          <div className="flex-shrink-0">
+            <div className="logo mb-4">
+              <img src="/logo_white.png" alt="Nobel Logo" className="h-12" />
+            </div>
+            <p
+              className="text-sm"
+              style={{ color: '#98A2B3' }}
+            >
+              Top learning experiences that create more <br /> talent in the world.
+            </p>
+          </div>
+
+          {/* Navigation Links */}
+          <div className="flex-shrink-0 md:mx-auto">
+            <h4 className="text-[#98A2B3] mb-4 text-sm">Product</h4>
+            <ul className="flex flex-col md:flex-row md:space-x-6 space-y-4 md:space-y-0">
+              <li>
+                <a href="/home" className="text-white hover:text-[#fabe07] hover:underline">Home</a>
+              </li>
+              <li>
+                <a href="/about" className="text-white hover:text-[#fabe07] hover:underline">About</a>
+              </li>
+              <li>
+                <a href="/overview" className="text-white hover:text-[#fabe07] hover:underline">Overview</a>
+              </li>
+              <li>
+                <a href="/register" className="text-white hover:text-[#fabe07] hover:underline">How to register</a>
+              </li>
+              <li>
+                <a href="/pricing" className="text-white hover:text-[#fabe07] hover:underline">Pricing</a>
+              </li>
+            </ul>
+          </div>
+
+        </div>
+      </div>
+
+      {/* Bottom Footer Section */}
+      <div className="bg-[#101828] py-6">
+        <div className="container mx-auto px-4 flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
+          {/* Copyright Text */}
+          <p className="text-[#98A2B3] text-center md:text-left">
+            © 2024 Nobel. All rights reserved.
+          </p>
+
+          {/* Social Media Links */}
+          <div className="flex justify-center md:justify-end space-x-4">
+            {/* Facebook Icon */}
+            <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer">
+              <FaFacebook
+                className="text-2xl cursor-pointer hover:text-blue-600"
+                style={{ color: '#98A2B3' }}
+              />
+            </a>
+
+            {/* Instagram Icon */}
+            <a href="https://www.instagram.com/jassem.debbich/" target="_blank" rel="noopener noreferrer">
+              <FaInstagram
+                className="text-2xl cursor-pointer hover:text-pink-600"
+                style={{ color: '#98A2B3' }}
+              />
+            </a>
+          </div>
+        </div>
+      </div>
+    </footer>
   );
 };
 

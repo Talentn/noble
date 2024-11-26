@@ -1,71 +1,131 @@
-import React from 'react';
-import Image from 'next/image'; // Adjust depending on whether you're using Next.js
+import React, { useState, useEffect } from "react";
+import Image from "next/image";
+import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 
-const PlansOverview: React.FC = () => {
+type Course = {
+  id: string;
+  title: string;
+  imageUrl: string | null;
+  price: number | null;
+};
+
+interface PlansOverviewProps {
+  courses: Course[];
+}
+
+const PlansOverview: React.FC<PlansOverviewProps> = ({ courses }) => {
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  // Automatic scrolling every 5 seconds
+  useEffect(() => {
+    if (courses.length > 0) {
+      const interval = setInterval(() => {
+        setCurrentIndex((prevIndex) => (prevIndex + 1) % courses.length);
+      }, 5000);
+
+      return () => clearInterval(interval);
+    }
+  }, [courses.length]);
+
+  // Calculate indexes for the left, center, and right cards
+  const getDisplayIndexes = () => {
+    const total = courses.length;
+    if (total === 0) return { left: -1, center: -1, right: -1 }; // No courses available
+    const left = (currentIndex - 1 + total) % total;
+    const right = (currentIndex + 1) % total;
+    return { left, center: currentIndex, right };
+  };
+
+  const { left, center, right } = getDisplayIndexes();
+
   return (
     <div className="py-16 bg-white">
-      <div className="container mx-auto px-4">
+      <div className="container mx-auto px-4 text-center">
         {/* Title and Description */}
         <div className="text-center mb-12">
-          <h2 className="text-4xl font-bold mb-4">Plans overview</h2>
-          <p className="text-gray-500 max-w-xl mx-auto">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.
+          {/* Responsive translations */}
+          <h2 className="text-3xl md:text-4xl font-bold mb-4">
+            <span className="hidden sm:block">Aperçu des plans</span>
+            <span className="block sm:hidden">Plans</span> {/* Mobile translation */}
+          </h2>
+          <p className="text-gray-500 max-w-xl mx-auto text-sm md:text-base">
+            <span className="hidden sm:block">
+              Explorez nos programmes adaptés à vos besoins
+            </span>
+            <span className="block sm:hidden">
+              Découvrez nos offres parfaites pour vous {/* Mobile translation */}
+            </span>
           </p>
         </div>
 
-        {/* Course Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {/* Course 1 */}
-          <div className="bg-white shadow-md rounded-lg overflow-hidden">
-            <Image src="/course_1.png" alt="Maths exam 2024" width={500} height={300} className="w-full" />
-            <div className="p-6">
-              <div className="text-sm text-blue-600 mb-2">Mathematics section</div>
-              <h3 className="text-2xl font-bold mb-2">Maths exam 2024</h3>
-              <p className="text-gray-500 mb-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.</p>
-              <div className="flex justify-between items-center">
-              </div>
-            </div>
-          </div>
+        {/* Scrolling Courses */}
+        <div className="relative flex items-center justify-center overflow-hidden">
+          <div className="flex space-x-4">
+            {[left, center, right].map((index, position) => {
+              if (index === -1 || !courses[index]) return null; // Skip if no valid course
 
-          {/* Course 2 */}
-          <div className="bg-white shadow-md rounded-lg overflow-hidden">
-            <Image src="/course_2.png" alt="Physics exam 2022" width={500} height={300} className="w-full" />
-            <div className="p-6">
-              <div className="text-sm text-blue-600 mb-2">Mathematics section</div>
-              <h3 className="text-2xl font-bold mb-2">Physics exam 2022</h3>
-              <p className="text-gray-500 mb-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.</p>
-              <div className="flex justify-between items-center">
-              </div>
-            </div>
-          </div>
-
-          {/* Course 3 */}
-          <div className="bg-white shadow-md rounded-lg overflow-hidden">
-            <Image src="/course_3.png" alt="Maths exam 2015" width={500} height={300} className="w-full" />
-            <div className="p-6">
-              <div className="text-sm text-blue-600 mb-2">Mathematics section</div>
-              <h3 className="text-2xl font-bold mb-2">Maths exam 2015</h3>
-              <p className="text-gray-500 mb-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.</p>
-              <div className="flex justify-between items-center">
-              </div>
-            </div>
+              return (
+                <div
+                  key={courses[index].id}
+                  className={`transition-all duration-[3000ms] ease-in-out ${
+                    position === 1
+                      ? "scale-105 opacity-100 z-10"
+                      : "scale-95 opacity-60 hidden sm:block"
+                  }`}
+                  style={{
+                    opacity: position === 1 ? 1 : 0.6, // Enhance fade effect
+                    transition: "opacity 3s ease, transform 3s ease",
+                  }}
+                >
+                  <div className="bg-white shadow-md rounded-lg overflow-hidden">
+                    {courses[index].imageUrl && (
+                      <Image
+                        src={courses[index].imageUrl}
+                        alt={courses[index].title}
+                        width={400}
+                        height={250}
+                        className="w-full h-auto"
+                      />
+                    )}
+                    <div className="p-6">
+                      <h3 className="text-lg md:text-xl font-bold mb-2">
+                        {courses[index].title}
+                      </h3>
+                      {courses[index].price && (
+                        <p className="text-blue-600 font-bold">
+                          {courses[index].price.toFixed(2)} DT
+                        </p>
+                      )}
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
           </div>
         </div>
 
-        {/* Pagination Dots */}
-        <div className="flex justify-center mt-6 space-x-2">
-        {/* Active Dot */}
-        <div className="w-8 h-3 rounded-full bg-[#fabe07]"></div> 
-        {/* Inactive Dots */}
-        <div className="w-4 h-4 rounded-full bg-gray-300"></div>
-        <div className="w-4 h-4 rounded-full bg-gray-300"></div>
-        </div>
+        {/* Pagination Controls */}
+        <div className="flex justify-center mt-6 space-x-4">
+          {/* Left Arrow */}
+          <button
+            onClick={() =>
+              setCurrentIndex(
+                (prevIndex) => (prevIndex - 1 + courses.length) % courses.length
+              )
+            }
+            className="p-3 rounded-full bg-[#fabe07] text-white text-2xl shadow-lg hover:bg-yellow-600 transition"
+          >
+            <FaArrowLeft />
+          </button>
 
-
-        {/* Learn more button */}
-        <div className="text-center mt-12">
-          <button className="bg-[#fabe07] text-[#121421] px-8 py-3 rounded-full hover:bg-yellow-600">
-            Learn more about our programs
+          {/* Right Arrow */}
+          <button
+            onClick={() =>
+              setCurrentIndex((prevIndex) => (prevIndex + 1) % courses.length)
+            }
+            className="p-3 rounded-full bg-[#fabe07] text-white text-2xl shadow-lg hover:bg-yellow-600 transition"
+          >
+            <FaArrowRight />
           </button>
         </div>
       </div>

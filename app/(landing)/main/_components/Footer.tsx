@@ -1,90 +1,99 @@
-import React from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faFacebookF, faInstagram } from '@fortawesome/free-brands-svg-icons'; // Importing the logos
-
-import { FaInstagram } from "react-icons/fa";
-import { FaFacebook } from "react-icons/fa";
+import React, { useState } from 'react';
+import { FaInstagram, FaFacebook } from "react-icons/fa";
 
 const Footer: React.FC = () => {
+
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  const toggleMenu = () => {
+      setMenuOpen(!menuOpen);
+  };
+
+  const scrollToSection = (sectionId: string) => {
+    document.getElementById(sectionId)?.scrollIntoView({ behavior: 'smooth' });
+    setMenuOpen(false); // Close the menu when an item is clicked
+};
+
   return (
     <footer>
       {/* Main Footer Section */}
       <div className="bg-[#121421] py-12">
-        <div className="container mx-auto px-4 flex justify-between items-start">
+        <div className="container mx-auto px-4 flex flex-col md:flex-row justify-between items-start space-y-8 md:space-y-0">
           {/* Logo and Description */}
-          <div>
+          <div className="flex-shrink-0">
             <div className="logo mb-4">
               <img src="/logo_white.png" alt="Nobel Logo" className="h-12" />
             </div>
             <p
-                className="text-sm max-w-none whitespace-nowrap"
-                style={{ color: '#98A2B3' }}
-                >
-                Top learning experiences that create more <br />talent in the world.
-                </p>
-
+              className="text-sm"
+              style={{ color: '#98A2B3' }}
+            >
+              Les meilleures expériences d'apprentissage qui créent plus de talents dans le monde.
+            </p>
           </div>
 
           {/* Navigation Links */}
-          <div>
-            <h4 className="text-[#98A2B3] mb-4 text-sm">Product</h4>
-            <ul className="flex space-x-6">
-                <li><a href="/home" className="text-white hover:text-[#fabe07] hover:underline">Home</a></li>
-                <li><a href="/about" className="text-white hover:text-[#fabe07] hover:underline">About</a></li>
-                <li><a href="/overview" className="text-white hover:text-[#fabe07] hover:underline">Overview</a></li>
-                <li><a href="/register" className="text-white hover:text-[#fabe07] hover:underline">How to register</a></li>
-                <li><a href="/pricing" className="text-white hover:text-[#fabe07] hover:underline">Pricing</a></li>
-            </ul>
-            </div>
+          <div className="flex-shrink-0 md:mx-auto">
+            <h4 className="text-[#98A2B3] mb-4 text-sm">Produit</h4>
+            <ul className="flex flex-col md:flex-row md:space-x-6 space-y-4 md:space-y-0">
+                <li>
+                  <button onClick={() => scrollToSection('home')} className="text-white hover:text-[#fabe07] hover:underline">
+                  Accueil
+                  </button>
+                </li>
+                <li>
+                  <button onClick={() => scrollToSection('about')} className="text-white hover:text-[#fabe07] hover:underline">
+                  A propos
+                  </button>
+                </li>
+                <li>
+                  <button onClick={() => scrollToSection('overview')} className="text-white hover:text-[#fabe07] hover:underline">
+                  Apercu
+                  </button>
+                </li>
+                <li>
+                  <button onClick={() => scrollToSection('register')} className="text-white hover:text-[#fabe07] hover:underline">
+                  Comment s&apos;inscrire
+                  </button>
+                </li>
+                <li>
+                  <button onClick={() => scrollToSection('pricing')} className="text-white hover:text-[#fabe07] hover:underline">
+                  Tarification
+                  </button>
+                </li>
+          </ul>
 
-
-
-            {/* Newsletter Subscription */}
-            <div>
-            <h4 className="text-[#EAECF0] mb-4 text-sm">Subscribe to our newsletter</h4>
-            <form className="space-y-4">
-                {/* Email Input */}
-                <input
-                type="email"
-                placeholder="Email"
-                className="w-full py-3 px-5 rounded-full bg-transparent border border-[#EAECF0] text-[#EAECF0] focus:outline-none focus:border-[#fabe07]"
-                />
-
-                {/* Subscribe Button */}
-                <button
-                className="w-full bg-[#fabe07] text-white py-3 rounded-full hover:bg-yellow-500 font-bold"
-                type="submit"
-                >
-                Subscribe
-                </button>
-            </form>
-            </div>
+          </div>
 
         </div>
       </div>
 
       {/* Bottom Footer Section */}
       <div className="bg-[#101828] py-6">
-        <div className="container mx-auto px-4 flex justify-between items-center">
+        <div className="container mx-auto px-4 flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
           {/* Copyright Text */}
-          <p className="text-[#98A2B3]">
+          <p className="text-[#98A2B3] text-center md:text-left">
             © 2024 Nobel. All rights reserved.
           </p>
 
           {/* Social Media Links */}
-          <div className="flex space-x-4">
+          <div className="flex justify-center md:justify-end space-x-4">
             {/* Facebook Icon */}
-            <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer">
-                <FaFacebook className="text-2xl cursor-pointer hover:text-blue-600" style={{ color: '#98A2B3' }} />
+            <a href="https://www.facebook.com/profile.php?id=61568757674605" target="_blank" rel="noopener noreferrer">
+              <FaFacebook
+                className="text-2xl cursor-pointer hover:text-blue-600"
+                style={{ color: '#98A2B3' }}
+              />
             </a>
 
             {/* Instagram Icon */}
-            <a href="https://www.instagram.com/jassem.debbich/" target="_blank" rel="noopener noreferrer">
-                <FaInstagram className="text-2xl cursor-pointer hover:text-pink-600" style={{ color: '#98A2B3' }} />
+            <a href="https://www.instagram.com/physi_chimie/" target="_blank" rel="noopener noreferrer">
+              <FaInstagram
+                className="text-2xl cursor-pointer hover:text-pink-600"
+                style={{ color: '#98A2B3' }}
+              />
             </a>
-            </div>
-
-
+          </div>
         </div>
       </div>
     </footer>

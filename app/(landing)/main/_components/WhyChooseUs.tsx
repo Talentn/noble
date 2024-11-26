@@ -1,92 +1,74 @@
 import React from 'react';
-import Image from 'next/image'; // If you're using Next.js
+import Image from 'next/image';
 
 const WhyChooseUs: React.FC = () => {
     return (
         <div className="py-16 bg-white">
             <div className="container mx-auto px-4">
                 {/* Title and Description */}
-                <div className="flex justify-between items-start mb-12">
-                    <div>
-                        {/* Apply Figma styling to the title */}
+                <div className="flex flex-col lg:flex-row justify-between items-start mb-12">
+                    <div className="lg:w-1/2">
                         <h2 
                             className="font-extrabold text-black mb-4"
                             style={{
                                 fontFamily: 'Nunito Sans',
-                                fontSize: '80px', // Figma: 64px
-                                fontWeight: 800,  // Figma: 800
-                                lineHeight: '80px', // Figma: 40px
-                                letterSpacing: '-0.05em', // Figma: -0.02em
-                                textAlign: 'left'
+                                fontSize: '50px', // Smaller size for mobile, overridden by Tailwind for lg+
+                                fontWeight: 800, 
+                                lineHeight: '48px',
+                                letterSpacing: '-0.02em',
+                                textAlign: 'left',
                             }}
                         >
-                            Why should choose <br /> Nobel services
+                            Pourquoi choisir <br /> les services de Nobel
                         </h2>
                     </div>
 
-                    {/* Apply Figma styling to the paragraph */}
                     <p 
-                        className="text-gray-500 max-w-md mt-8"
+                        className="text-gray-500 mt-8 lg:mt-0 lg:ml-8 lg:w-1/2"
                         style={{
                             fontFamily: 'Nunito Sans',
-                            fontSize: '20px',
-                            fontWeight: 600,  
-                            lineHeight: '30px', 
-                            textAlign: 'left'
+                            fontSize: '20px', // Smaller size for mobile, overridden for larger screens
+                            fontWeight: 600,
+                            lineHeight: '28px',
+                            textAlign: 'left',
                         }}
                     >
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim.
+                        Choisissez Nobel pour une préparation optimale au bac en physique. Profitez de corrections détaillées et claires des anciens examens pour mieux apprendre et comprendre comment répondre efficacement à l'examen principal
                     </p>
                 </div>
 
-                {/* Main Image with Play Button */}
-                <div className="relative mb-12">
-                    <Image
-                        src="/video.png"
-                        alt="Person in Meeting"
-                        width={700}
-                        height={400}
-                        className="w-full rounded-lg shadow-lg"
-                    />
-                    <div className="absolute inset-0 flex justify-center items-center">
-                        <button className="bg-white p-4 rounded-full shadow-lg">
-                            <Image src="/play_button.png" alt="Play" width={32} height={32} />
-                        </button>
-                    </div>
-                </div>
-
                 {/* Feature Cards */}
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-8">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     {/* Card 1 */}
-                    <div className="bg-white shadow-md rounded-lg p-6 flex flex-col items-start w-[400px]">
+                    <div className="bg-white shadow-md rounded-lg p-6 flex flex-col items-start">
                         <div>
-                            <Image src="/pay.png" alt="Paying courses" width={110} height={110} />
+                            <Image src="/pay.png" alt="Paying courses" width={80} height={80} />
                         </div>
-                        <h3 className="text-xl font-bold mb-1" style={{ color: '#2F327D' }}>Paying courses online</h3>
-                        <p className="text-gray-500">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim.
+                        <h3 className="text-lg md:text-xl font-bold mb-1" style={{ color: '#2F327D' }}>Cours payants en ligne</h3>
+                        <p className="text-gray-500 text-sm md:text-base">
+                            Accédez à des cours approfondis et détaillés pour maîtriser la physique, à votre rythme. Nos cours payants vous offrent un contenu de haute qualité conçu par des experts.
                         </p>
                     </div>
 
                     {/* Card 2 */}
-                    <div className="bg-white shadow-md rounded-lg p-6 flex flex-col items-start  w-[400px]">
+                    <div className="bg-white shadow-md rounded-lg p-6 flex flex-col items-start">
                         <div>
-                            <Image src="/course.png" alt="Updated courses" width={110} height={110} />
+                            <Image src="/course.png" alt="Updated courses" width={80} height={80} />
                         </div>
-                        <h3 className="text-xl font-bold mb-1" style={{ color: '#2F327D' }}>Updated courses</h3>
-                        <p className="text-gray-500">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim.
+                        <h3 className="text-lg md:text-xl font-bold mb-1" style={{ color: '#2F327D' }}>Cours mis à jour</h3>
+                        <p className="text-gray-500 text-sm md:text-base">
+                        Restez à jour avec les dernières mises à jour des cours, adaptées aux nouvelles exigences du programme. Nos contenus sont régulièrement revus pour vous offrir les meilleures ressources pédagogiques.
                         </p>
                     </div>
 
                     {/* Card 3 */}
-                    <div className="bg-white shadow-md rounded-lg p-6 flex flex-col items-start  w-[400px]">
+                    <div className="bg-white shadow-md rounded-lg p-6 flex flex-col items-start">
                         <div>
-                            <Image src="/security.png" alt="Secure platform" width={110} height={110} />
+                            <Image src="/security.png" alt="Secure platform" width={80} height={80} />
                         </div>
-                        <h3 className="text-xl font-bold mb-1" style={{ color: '#2F327D' }}>Secure platform</h3>
-                        <p className="text-gray-500">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim.
+                        <h3 className="text-lg md:text-xl font-bold mb-1" style={{ color: '#2F327D' }}>Plateforme sécurisée</h3>
+                        <p className="text-gray-500 text-sm md:text-base">
+                        Profitez d'une plateforme d'apprentissage sécurisée, garantissant la confidentialité de vos données et des transactions en toute sérénité.
                         </p>
                     </div>
                 </div>
