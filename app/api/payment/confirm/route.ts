@@ -32,7 +32,7 @@ export async function POST(req: NextRequest) {
         }).toString();
 
         // Make GET request using Axios with the custom agent
-        const response = await axios.get(`https://test.clictopay.com/payment/rest/getOrderStatus.do?${queryParams}`, {
+        const response = await axios.get(`https://ipay.clictopay.com/payment/rest/register.do?${queryParams}`, {
             httpsAgent: agent,
         });
 
