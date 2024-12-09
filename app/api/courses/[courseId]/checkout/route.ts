@@ -29,14 +29,14 @@ export async function POST(req: Request, { params }: { params: { courseId: strin
         }
 
         // Replace with the ClicToPay test URL
-        const response = await fetch('https://test.clictopay.com/payment/rest/register.do', {
+        const response = await fetch('https://ipay.clictopay.com/payment/rest/register.do', {
             method: 'POST',
             headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
             body: new URLSearchParams({
                 userName: clictopayUser,  // Merchant login
                 password: clictopayPassword,  // Merchant password
                 orderNumber: uniqueOrderNumber.toString(),  // Unique order number for the user and transaction
-                amount: Math.round(course.price! * 100).toString(),  // Amount in cents
+                amount: Math.round(course.price! * 1000).toString(),  // Amount in cents
                 currency: '788',  // Currency code for TND (Tunisian Dinar)
                 returnUrl: `${process.env.NEXT_PUBLIC_APP_URL}/courses/${courseId}?success=1&orderId=${uniqueOrderNumber}`,
                 failUrl: `${process.env.NEXT_PUBLIC_APP_URL}/courses/${courseId}?status=failed`,
