@@ -23,9 +23,7 @@ export async function POST(req: NextRequest) {
         }).toString();
 
         const response = await axios.get(`https://ipay.clictopay.com/payment/rest/getOrderStatus.do?${queryParams}`
-
-        console.log('ClicToPay API Response Status:', response.status, response.statusText);
-        console.log("Payment Status Data:", response.data);
+            
 
         // Check if the payment was successful
         if (response.data.OrderStatus === 2) {
