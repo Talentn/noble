@@ -64,7 +64,6 @@ const CourseIdPage = async ({ params, searchParams }: CourseIdPageProps) => {
                     courseId,
                     userId: user.id,
                 }),
-                httpsAgent,
             });
 
             const result = await response.json();
