@@ -14,16 +14,6 @@ export async function POST(req: NextRequest) {
             return NextResponse.json({ success: false, message: "Missing required parameters." }, { status: 400 });
         }
 
-        // Load the CA bundle
-        const caBundlePath = path.join(process.cwd(), 'certs', 'STAR_nobel_tn.ca-bundle');
-        const caBundle = fs.readFileSync(caBundlePath);
-
-        // Create an HTTPS agent with the CA bundle
-        const agent = new https.Agent({
-            ca: caBundle,
-            rejectUnauthorized: true,
-        });
-
         // Prepare query parameters
         const queryParams = new URLSearchParams({
             userName: process.env.CLICTOPAY_USER!,
@@ -33,8 +23,14 @@ export async function POST(req: NextRequest) {
         }).toString();
 
         // Make GET request using Axios with the custom agent
-        const response = await axios.get(`https://ipay.clictopay.com/payment/rest/getOrderStatus.do?${queryParams}`, {
-            httpsAgent: agent,
+        const httpsAgent = new https.Agent({
+            ca: fs.readFileSync(path.join(process.cwd(), "certs", "STAR_nobel_tn.ca-bundle")),
+        });
+
+        const response = await fetch("https://ipay.clictopay.com/payment/rest/getOrderStatus.do", {
+            method: "GET",
+            headers: { "Content-Type": "application/json" },
+            agent: httpsAgent,
         });
 
         console.log('ClicToPay API Response Status:', response.status, response.statusText);
