@@ -20,7 +20,8 @@ export async function POST(req: NextRequest) {
 
         // Create an HTTPS agent with the CA bundle
         const agent = new https.Agent({
-            rejectUnauthorized: false,
+            ca: caBundle,
+            rejectUnauthorized: true,
         });
 
         // Prepare query parameters
