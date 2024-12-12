@@ -19,7 +19,7 @@ export async function POST(req: Request, { params }: { params: { courseId: strin
         if (!course) {
             return new NextResponse("Course not found", { status: 404 });
         }
-        const uniqueOrderNumber = const uniqueOrderNumber = `${Date.now()}-${user.id}-${courseId}`;
+        const uniqueOrderNumber = `${Date.now()}-${user.id}-${courseId}`;
         const clictopayUser = process.env.CLICTOPAY_USER;
         const clictopayPassword = process.env.CLICTOPAY_PASSWORD;
 
