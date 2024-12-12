@@ -5,6 +5,7 @@ import PaymentStatusHandler from "@/components/PaymentStatusHandler";
 import https from "https";
 import fs from "fs";
 import path from "path";
+import axios from 'axios';
 
 interface CourseIdPageProps {
     params: { courseId: string };
@@ -48,15 +49,13 @@ const CourseIdPage = async ({ params, searchParams }: CourseIdPageProps) => {
     const caBundlePath = path.join(process.cwd(), "certs", "STAR_nobel_tn.ca-bundle");
     const caBundle = fs.readFileSync(caBundlePath, "utf-8");
 
-    const httpsAgent = new https.Agent({
+    const agent = new https.Agent({
     ca: caBundle,
 });
     if (status === "1" && orderId) {
         try {
             // Confirm payment by calling your server-side payment verification API
-            const response = await fetch(`${process.env.NEXT_PUBLIC_APP_URL}/api/payment/confirm`, {
-                agent: httpsAgent,
-                method: "POST",
+            const response = await axios.post(`${process.env.NEXT_PUBLIC_APP_URL}/api/payment/confirm`, {
                 headers: {
                     "Content-Type": "application/json",
                 },
@@ -65,6 +64,7 @@ const CourseIdPage = async ({ params, searchParams }: CourseIdPageProps) => {
                     courseId,
                     userId: user.id,
                 }),
+                httpsAgent: agent,
             });
 
             const result = await response.json();
