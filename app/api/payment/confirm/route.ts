@@ -15,7 +15,7 @@ export async function POST(req: NextRequest) {
         }
 
         // Load the CA bundle
-        const caBundlePath = path.join(process.cwd(), 'certs', 'STAR_nobel_tn.crt');
+        const caBundlePath = path.join(process.cwd(), 'certs', 'STAR_nobel_tn.ca-bundle');
         const caBundle = fs.readFileSync(caBundlePath);
 
         // Create an HTTPS agent with the CA bundle
