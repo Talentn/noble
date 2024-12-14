@@ -38,7 +38,7 @@ export async function POST(req: Request, { params }: { params: { courseId: strin
                 orderNumber: uniqueOrderNumber.toString(),  // Unique order number for the user and transaction
                 amount: Math.round(course.price! * 1000).toString(),  // Amount in cents
                 currency: '788',  // Currency code for TND (Tunisian Dinar)
-                returnUrl: `${process.env.NEXT_PUBLIC_APP_URL}/courses/${courseId}?success=1&orderId=${uniqueOrderNumber}`,
+                returnUrl: `${process.env.NEXT_PUBLIC_APP_URL}/courses/${courseId}?success=1`,
                 failUrl: `${process.env.NEXT_PUBLIC_APP_URL}/courses/${courseId}?status=failed`,
             }),
         });
