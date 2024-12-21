@@ -18,7 +18,7 @@ const PricingSection: React.FC = () => {
           {/* First Card */}
           <div className="bg-white shadow-md rounded-lg p-6 flex flex-col justify-between h-auto w-full">
             <div className="mt-6 md:mt-10">
-              <h3 className="text-3xl md:text-4xl font-bold text-[#2F327D]">15 DT</h3>
+              <h3 className="text-3xl md:text-4xl font-bold text-[#2F327D]">10 DT</h3>
               <span className="text-gray-400 text-sm md:text-base">/Examen</span>
               <h4 className="text-lg md:text-xl font-bold mt-4 text-[#2F327D]">Un seul examen</h4>
               <p className="text-gray-500 mt-2 text-sm md:text-base">
@@ -27,22 +27,27 @@ const PricingSection: React.FC = () => {
 
               {/* Features */}
               <ul className="mt-4 space-y-2">
-                {Array(4)
-                  .fill('Lorem espium anturium')
-                  .map((feature, index) => (
-                    <li key={index} className="flex items-center space-x-2">
-                      <span className="inline-flex items-center justify-center w-6 h-6 bg-[#eeedf2] rounded-full text-[#2F327D] font-extrabold">
-                        &#10003;
-                      </span>
+  <li className="flex items-center space-x-2">
+    <span className="inline-flex items-center justify-center w-6 h-6 bg-[#eeedf2] rounded-full text-[#2F327D] font-extrabold">
+      &#10003;
+    </span>
+    <span className="text-sm md:text-base">5 vidéos par examen</span>
+  </li>
+  <li className="flex items-center space-x-2">
+    <span className="inline-flex items-center justify-center w-6 h-6 bg-[#eeedf2] rounded-full text-[#2F327D] font-extrabold">
+      &#10003;
+    </span>
+    <span className="text-sm md:text-base">Correction bien détaillé</span>
+  </li>
+  <li className="flex items-center space-x-2">
+    <span className="inline-flex items-center justify-center w-6 h-6 bg-[#eeedf2] rounded-full text-[#2F327D] font-extrabold">
+      &#10003;
+    </span>
+    <span className="text-sm md:text-base">Plus que 2 heures</span>
+  </li>
+</ul>
 
-                      <span className="text-sm md:text-base">{feature}</span>
-                    </li>
-                  ))}
-              </ul>
             </div>
-            <button className="mt-8 bg-white border border-[#2F327D] text-[#2F327D] px-6 py-3 rounded-full hover:bg-gray-100 w-full font-bold">
-            Choisissez un forfait
-            </button>
           </div>
 
           {/* Second Card with Background Image */}
@@ -60,7 +65,7 @@ const PricingSection: React.FC = () => {
             LE PLUS POPULAIRE
             </div>
             <div className="mt-6 md:mt-10">
-              <h3 className="text-3xl md:text-4xl font-bold">200 DT</h3>
+              <h3 className="text-3xl md:text-4xl font-bold">120 DT / 180 DT</h3>
               <h4 className="text-lg md:text-xl font-bold mt-4">Tous les examens du bac</h4>
               <p className="text-gray-300 mt-2 text-sm md:text-base">
               Accédez à une collection complète de tous les examens du bac pour vous entraîner et réussir avec confiance.
@@ -68,26 +73,36 @@ const PricingSection: React.FC = () => {
 
               {/* Features */}
               <ul className="mt-4 space-y-2">
-                {Array(4)
-                  .fill('Lorem espium anturium')
-                  .map((feature, index) => (
-                    <li key={index} className="flex items-center space-x-2">
-                      <span
-                        className="inline-flex items-center justify-center w-6 h-6 bg-[#b1b7f1] rounded-full"
-                        style={{ color: 'white' }}
-                      >
-                        &#10003;
-                      </span>
+  <li className="flex items-center space-x-2">
+    <span
+      className="inline-flex items-center justify-center w-6 h-6 bg-[#b1b7f1] rounded-full"
+      style={{ color: 'white' }}
+    >
+      &#10003;
+    </span>
+    <span className="text-sm md:text-base">Plus que 20 examens</span>
+  </li>
+  <li className="flex items-center space-x-2">
+    <span
+      className="inline-flex items-center justify-center w-6 h-6 bg-[#b1b7f1] rounded-full"
+      style={{ color: 'white' }}
+    >
+      &#10003;
+    </span>
+    <span className="text-sm md:text-base">Plus que 90 vidéos</span>
+  </li>
+  <li className="flex items-center space-x-2">
+    <span
+      className="inline-flex items-center justify-center w-6 h-6 bg-[#b1b7f1] rounded-full"
+      style={{ color: 'white' }}
+    >
+      &#10003;
+    </span>
+    <span className="text-sm md:text-base">Plus que 180 heures</span>
+  </li>
+</ul>
 
-
-                      <span className="text-sm md:text-base">{feature}</span>
-                    </li>
-                  ))}
-              </ul>
             </div>
-            <button className="mt-8 bg-yellow-400 text-[#121421] px-6 py-3 rounded-full hover:bg-yellow-500 w-full font-bold">
-            Choisissez un forfait
-            </button>
           </div>
         </div>
       </div>
