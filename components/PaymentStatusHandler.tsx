@@ -16,10 +16,10 @@ const PaymentStatusHandler = ({ paymentStatus, courseId, chapters }: PaymentStat
     useEffect(() => {
         if (paymentStatus === "success") {
             toast.success("Le paiement a été réussi avec succès !");
-        } else 
+        } else if (paymentStatus == "failed") {
             toast.error("Le paiement a échoué. Veuillez réessayer.");
-        
-
+        }
+    
         // Redirect to the first chapter of the course
         if (chapters.length > 0) {
             router.push(`/courses/${courseId}/chapters/${chapters[0].id}`);
