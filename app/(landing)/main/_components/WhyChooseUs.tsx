@@ -33,7 +33,7 @@ const WhyChooseUs: React.FC = () => {
                             textAlign: 'left',
                         }}
                     >
-                        Choisissez Nobel pour une préparation optimale au bac en physique. Profitez de corrections détaillées et claires des anciens examens pour mieux apprendre et comprendre comment répondre efficacement à l'examen principal
+                        Choisissez Nobel pour une préparation optimale au bac en physique. Profitez de corrections détaillées et claires des anciens examens pour mieux apprendre et comprendre comment répondre efficacement à l&apos;examen principal
                     </p>
                 </div>
 
@@ -68,7 +68,7 @@ const WhyChooseUs: React.FC = () => {
                         </div>
                         <h3 className="text-lg md:text-xl font-bold mb-1" style={{ color: '#2F327D' }}>Plateforme sécurisée</h3>
                         <p className="text-gray-500 text-sm md:text-base">
-                        Profitez d'une plateforme d'apprentissage sécurisée, garantissant la confidentialité de vos données et des transactions en toute sérénité.
+                        Profitez d&apos;une plateforme d&apos;apprentissage sécurisée, garantissant la confidentialité de vos données et des transactions en toute sécurité.
                         </p>
                     </div>
                 </div>

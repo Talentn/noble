@@ -28,7 +28,7 @@ const Footer: React.FC = () => {
               className="text-sm"
               style={{ color: '#98A2B3' }}
             >
-              Les meilleures expériences d'apprentissage qui créent plus de talents dans le monde.
+              Les meilleures expériences d&apos;apprentissage qui créent plus de talents dans le monde.
             </p>
           </div>
 
