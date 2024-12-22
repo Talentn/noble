@@ -5,5 +5,5 @@ export const config = {
 };
 
 export default authMiddleware({
-  publicRoutes: ["/api/uploadthing", "/api/payment/confirm"]// Keep this for the public API route
+  publicRoutes: ["/api/uploadthing", "/api/payment/confirm", "/api/coursesLandingPage", "/main"]// Keep this for the public API route
 });
