@@ -16,7 +16,6 @@ interface PlansOverviewProps {
 const PlansOverview: React.FC<PlansOverviewProps> = ({ courses }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  // Automatic scrolling every 5 seconds
   useEffect(() => {
     if (courses.length > 0) {
       const interval = setInterval(() => {
@@ -27,10 +26,9 @@ const PlansOverview: React.FC<PlansOverviewProps> = ({ courses }) => {
     }
   }, [courses.length]);
 
-  // Calculate indexes for the left, center, and right cards
   const getDisplayIndexes = () => {
     const total = courses.length;
-    if (total === 0) return { left: -1, center: -1, right: -1 }; // No courses available
+    if (total === 0) return { left: -1, center: -1, right: -1 };
     const left = (currentIndex - 1 + total) % total;
     const right = (currentIndex + 1) % total;
     return { left, center: currentIndex, right };
@@ -41,28 +39,25 @@ const PlansOverview: React.FC<PlansOverviewProps> = ({ courses }) => {
   return (
     <div className="py-16 bg-white">
       <div className="container mx-auto px-4 text-center">
-        {/* Title and Description */}
         <div className="text-center mb-12">
-          {/* Responsive translations */}
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
             <span className="hidden sm:block">Aperçu des plans</span>
-            <span className="block sm:hidden">Plans</span> {/* Mobile translation */}
+            <span className="block sm:hidden">Plans</span>
           </h2>
           <p className="text-gray-500 max-w-xl mx-auto text-sm md:text-base">
             <span className="hidden sm:block">
               Explorez nos programmes adaptés à vos besoins
             </span>
             <span className="block sm:hidden">
-              Découvrez nos offres parfaites pour vous {/* Mobile translation */}
+              Découvrez nos offres parfaites pour vous
             </span>
           </p>
         </div>
 
-        {/* Scrolling Courses */}
         <div className="relative flex items-center justify-center overflow-hidden">
           <div className="flex space-x-4">
             {[left, center, right].map((index, position) => {
-              if (index === -1 || !courses[index]) return null; // Skip if no valid course
+              if (index === -1 || !courses[index]) return null;
 
               return (
                 <div
@@ -73,20 +68,18 @@ const PlansOverview: React.FC<PlansOverviewProps> = ({ courses }) => {
                       : "scale-95 opacity-60 hidden sm:block"
                   }`}
                   style={{
-                    opacity: position === 1 ? 1 : 0.6, // Enhance fade effect
+                    opacity: position === 1 ? 1 : 0.6,
                     transition: "opacity 3s ease, transform 3s ease",
                   }}
                 >
                   <div className="bg-white shadow-md rounded-lg overflow-hidden">
-                    {courses[index].imageUrl && (
-                      <Image
-                        src={courses[index].imageUrl}
-                        alt={courses[index].title}
-                        width={400}
-                        height={250}
-                        className="w-full h-auto"
-                      />
-                    )}
+                    <Image
+                      src={courses[index].imageUrl || "/placeholder-image.jpg"}
+                      alt={courses[index].title}
+                      width={400}
+                      height={250}
+                      className="w-full h-auto"
+                    />
                     <div className="p-6">
                       <h3 className="text-lg md:text-xl font-bold mb-2">
                         {courses[index].title}
@@ -104,9 +97,7 @@ const PlansOverview: React.FC<PlansOverviewProps> = ({ courses }) => {
           </div>
         </div>
 
-        {/* Pagination Controls */}
         <div className="flex justify-center mt-6 space-x-4">
-          {/* Left Arrow */}
           <button
             onClick={() =>
               setCurrentIndex(
@@ -117,8 +108,6 @@ const PlansOverview: React.FC<PlansOverviewProps> = ({ courses }) => {
           >
             <FaArrowLeft />
           </button>
-
-          {/* Right Arrow */}
           <button
             onClick={() =>
               setCurrentIndex((prevIndex) => (prevIndex + 1) % courses.length)
