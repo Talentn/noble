@@ -5,8 +5,8 @@ import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 type Course = {
   id: string;
   title: string;
-  imageUrl: string ;
-  price: number | null;
+  imageUrl: string;
+  price: number;
 };
 
 interface PlansOverviewProps {
@@ -36,6 +36,17 @@ const PlansOverview: React.FC<PlansOverviewProps> = ({ courses }) => {
 
   const { left, center, right } = getDisplayIndexes();
 
+  // Guard clause for empty courses array
+  if (courses.length === 0) {
+    return (
+      <div className="py-16 bg-white">
+        <div className="container mx-auto px-4 text-center">
+          <p className="text-gray-500">No courses available.</p>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="py-16 bg-white">
       <div className="container mx-auto px-4 text-center">
@@ -57,11 +68,13 @@ const PlansOverview: React.FC<PlansOverviewProps> = ({ courses }) => {
         <div className="relative flex items-center justify-center overflow-hidden">
           <div className="flex space-x-4">
             {[left, center, right].map((index, position) => {
-              if (index === -1 || !courses[index]) return null;
+              // Ensure the index is valid
+              const course = courses[index];
+              if (!course) return null;
 
               return (
                 <div
-                  key={courses[index].id}
+                  key={course.id}
                   className={`transition-all duration-[3000ms] ease-in-out ${
                     position === 1
                       ? "scale-105 opacity-100 z-10"
@@ -74,21 +87,19 @@ const PlansOverview: React.FC<PlansOverviewProps> = ({ courses }) => {
                 >
                   <div className="bg-white shadow-md rounded-lg overflow-hidden">
                     <Image
-                      src={courses[index].imageUrl ?? "/placeholder-image.jpg"}
-                      alt={courses[index].title}
+                      src={course.imageUrl}
+                      alt={course.title}
                       width={400}
                       height={250}
                       className="w-full h-auto"
                     />
                     <div className="p-6">
                       <h3 className="text-lg md:text-xl font-bold mb-2">
-                        {courses[index].title}
+                        {course.title}
                       </h3>
-                      {courses[index].price && (
-                        <p className="text-blue-600 font-bold">
-                          {courses[index].price.toFixed(2)} DT
-                        </p>
-                      )}
+                      <p className="text-blue-600 font-bold">
+                        {course.price.toFixed(2)} DT
+                      </p>
                     </div>
                   </div>
                 </div>
