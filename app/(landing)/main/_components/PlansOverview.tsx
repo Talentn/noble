@@ -74,7 +74,7 @@ const PlansOverview: React.FC<PlansOverviewProps> = ({ courses }) => {
                 >
                   <div className="bg-white shadow-md rounded-lg overflow-hidden">
                     <Image
-                      src={courses[index].imageUrl || "/placeholder-image.jpg"}
+                      src={courses[index].imageUrl ?? "/placeholder-image.jpg"}
                       alt={courses[index].title}
                       width={400}
                       height={250}
