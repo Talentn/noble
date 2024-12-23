@@ -5,7 +5,7 @@ import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 type Course = {
   id: string;
   title: string;
-  imageUrl: string | null;
+  imageUrl: string ;
   price: number | null;
 };
 
