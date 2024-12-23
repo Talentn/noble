@@ -12,7 +12,7 @@ import { FaArrowUp } from "react-icons/fa";
 const Main: React.FC = () => {
   const [showScrollButton, setShowScrollButton] = useState(false);
   const [courses, setCourses] = useState<
-    { id: string; title: string; imageUrl: string | null; price: number | null }[]
+    { id: string; title: string; imageUrl: string ; price: number }[]
   >([]);
 
   useEffect(() => {
