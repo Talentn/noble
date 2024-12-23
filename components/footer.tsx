@@ -1,6 +1,7 @@
 "use client"
 import React, { useState } from 'react';
 import { FaInstagram, FaFacebook } from "react-icons/fa";
+import Link from 'next/link';
 
 const Footer: React.FC = () => {
 
@@ -38,33 +39,44 @@ const Footer: React.FC = () => {
 			<h4 className="text-[#98A2B3] mb-4 text-sm">Produit</h4>
 			<ul className="flex flex-col md:flex-row md:space-x-6 space-y-4 md:space-y-0">
 				<li>
-				  <button onClick={() => scrollToSection('home')} className="text-white hover:text-[#fabe07] hover:underline">
-				  Accueil
-				  </button>
+				<Link href="/main" className="text-white hover:text-[#fabe07] hover:underline">
+					Accueil
+				</Link>
 				</li>
 				<li>
-				  <button onClick={() => scrollToSection('about')} className="text-white hover:text-[#fabe07] hover:underline">
-				  A propos
-				  </button>
+				<Link 
+					href="/main#about" 
+					className="text-white hover:text-[#fabe07] hover:underline"
+				>
+					A propos
+				</Link>
 				</li>
 				<li>
-				  <button onClick={() => scrollToSection('overview')} className="text-white hover:text-[#fabe07] hover:underline">
-				  Apercu
-				  </button>
+				<Link 
+					href="/main#overview" 
+					className="text-white hover:text-[#fabe07] hover:underline"
+				>
+					Aperçu
+				</Link>
 				</li>
 				<li>
-				  <button onClick={() => scrollToSection('register')} className="text-white hover:text-[#fabe07] hover:underline">
-				  Comment s&apos;inscrire
-				  </button>
+				<Link 
+					href="/main#register" 
+					className="text-white hover:text-[#fabe07] hover:underline"
+				>
+					Comment s&apos;inscrire
+				</Link>
 				</li>
 				<li>
-				  <button onClick={() => scrollToSection('pricing')} className="text-white hover:text-[#fabe07] hover:underline">
-				  Tarification
-				  </button>
+				<Link 
+					href="/main#pricing" 
+					className="text-white hover:text-[#fabe07] hover:underline"
+				>
+					Tarification
+				</Link>
 				</li>
-		  </ul>
-
-		  </div>
+			</ul>
+			</div>
 
 		</div>
 	  </div>
