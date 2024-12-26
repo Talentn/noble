@@ -109,8 +109,8 @@ const Header: React.FC = () => {
                                 </ul>
                             </nav>
                             <div className="mt-8 flex flex-col space-y-4">
-                                <button className="bg-[#121421] px-4 py-2 rounded-full hover:bg-blue-600">Se connecter</button>
-                                <button className="bg-[#fabe07] text-[#121421] px-4 py-2 rounded-full hover:bg-yellow-600">S&apos;inscrire</button>
+                                <button className="bg-[#121421] px-4 py-2 rounded-full hover:bg-blue-600" onClick={() => router.push("/sign-in")}>Se connecter</button>
+                                <button className="bg-[#fabe07] text-[#121421] px-4 py-2 rounded-full hover:bg-yellow-600" onClick={() => router.push("/sign-up")}>S&apos;inscrire</button>
                             </div>
                         </div>
                     )}
@@ -131,7 +131,7 @@ const Header: React.FC = () => {
                             </p>
 
                             {/* Button */}
-                            <button className="mt-8 bg-[#fabe07] text-[#121421] px-6 py-3 rounded-full hover:bg-yellow-600">
+                            <button className="mt-8 bg-[#fabe07] text-[#121421] px-6 py-3 rounded-full hover:bg-yellow-600" onClick={() => router.push("/search")}>
                             En savoir plus
                             </button>
 
@@ -140,7 +140,7 @@ const Header: React.FC = () => {
                                 {/* Offers Header */}
                                 <div className="flex justify-between items-center mb-6">
                                     <h2 className="text-2xl font-bold">Nos offres</h2>
-                                    <a href="#" className="text-yellow-400 hover:underline">Voir plus de détails</a>
+                                    {/*<a href="#" className="text-yellow-400 hover:underline">Voir plus de détails</a>*/}
                                 </div>
 
                                 {/* Offer Cards */}
@@ -150,7 +150,7 @@ const Header: React.FC = () => {
                                         <img src="/student.png" alt="Only one exam" className="w-full rounded-lg mb-4" />
                                         <div className="flex justify-between items-center">
                                             <span className="text-lg font-bold">Un seul examen</span>
-                                            <span>15Dt</span>
+                                            <span>10DT</span>
                                         </div>
                                     </div>
 
@@ -159,7 +159,7 @@ const Header: React.FC = () => {
                                         <img src="/teacher.png" alt="All bac exams" className="w-full rounded-lg mb-4" />
                                         <div className="flex justify-between items-center">
                                             <span className="text-lg font-bold">Tous les examens du bac</span>
-                                            <span>200Dt</span>
+                                            <span>120DT</span>
                                         </div>
                                     </div>
                                 </div>

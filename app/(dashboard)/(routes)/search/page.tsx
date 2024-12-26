@@ -39,10 +39,9 @@ const SearchPage = async ({
       <SearchInput />
       </div>
       <div className="p-6 space-y-4">
-       {/*
-        <Categories
+      <Categories
           items={categories}
-        /> */}
+        /> 
         <CoursesList items={courses}/>
       </div>
       <div>
