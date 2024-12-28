@@ -39,13 +39,13 @@ const Footer: React.FC = () => {
 			<h4 className="text-[#98A2B3] mb-4 text-sm">Produit</h4>
 			<ul className="flex flex-col md:flex-row md:space-x-6 space-y-4 md:space-y-0">
 				<li>
-				<Link href="/main" className="text-white hover:text-[#fabe07] hover:underline">
+				<Link href="/" className="text-white hover:text-[#fabe07] hover:underline">
 					Accueil
 				</Link>
 				</li>
 				<li>
 				<Link 
-					href="/main#about" 
+					href="/#about" 
 					className="text-white hover:text-[#fabe07] hover:underline"
 				>
 					A propos
@@ -53,7 +53,7 @@ const Footer: React.FC = () => {
 				</li>
 				<li>
 				<Link 
-					href="/main#overview" 
+					href="/#overview" 
 					className="text-white hover:text-[#fabe07] hover:underline"
 				>
 					Aperçu
@@ -61,7 +61,7 @@ const Footer: React.FC = () => {
 				</li>
 				<li>
 				<Link 
-					href="/main#register" 
+					href="/#register" 
 					className="text-white hover:text-[#fabe07] hover:underline"
 				>
 					Comment s&apos;inscrire
@@ -69,7 +69,7 @@ const Footer: React.FC = () => {
 				</li>
 				<li>
 				<Link 
-					href="/main#pricing" 
+					href="/#pricing" 
 					className="text-white hover:text-[#fabe07] hover:underline"
 				>
 					Tarification

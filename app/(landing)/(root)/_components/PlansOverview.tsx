@@ -75,7 +75,7 @@ const PlansOverview: React.FC<PlansOverviewProps> = ({ courses }) => {
               return (
                 <div
                   key={course.id}
-                  className={`transition-all duration-[3000ms] ease-in-out ${
+                  className={`transition-all duration-&lsqb;3000ms&rsqb; ease-in-out ${
                     position === 1
                       ? "scale-105 opacity-100 z-10"
                       : "scale-95 opacity-60 hidden sm:block"
