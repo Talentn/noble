@@ -24,7 +24,10 @@ async function main() {
                 { name: "Bac Sciences"},
                 { name: "Bac Technique"},
                 { name: "Bac Mathématiques"},
-                { name: "Bac Informatique"}
+                { name: "Bac Informatique"},
+                { name: "Pack"},
+                { name: "Examen Bac Sciences"},
+                { name: "Examen Bac Maths"}
             
             ]
         });
