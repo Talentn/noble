@@ -132,7 +132,7 @@ const Header: React.FC = () => {
 
                             {/* Button */}
                             <button className="mt-8 bg-[#fabe07] text-[#121421] px-6 py-3 rounded-full hover:bg-yellow-600" onClick={() => router.push("/search")}>
-                            En savoir plus
+                            S&apos;inscrire gratuitement
                             </button>
 
                             {/* Offers Section */}
